@@ -116,9 +116,9 @@ Table of Contents
    of the divergence in RFCs and some current implementations regarding
    constrained cwnd increase.
 
-   Different from [RFC7661], this document is solely concerned with the
-   increase behavior. (should we discuss the relationship with this RFC
-   some more?)
+   Different from [RFC7661], the present document is solely concerned
+   with the increase behavior. (should we discuss the relationship with
+   this RFC some more?)
 
 1.1.  Terminology
 
@@ -144,14 +144,13 @@ Table of Contents
    In rule #2, "inc" is a function returning the maximum unconstrained
    increase that would be carried out by the congestion control
    mechanism within one RTT, based on the "maxFS" parameter.  For
-   example, in case of Slow Start as specified in [RFC5681], this limit
-   is 2*maxFS, and for Congestion Avoidance as specified in [RFC5681],
-   this limit is 1+max(FlightSize).  Therefore, with rule #2, equation 2
-   in [RFC5681] becomes:
+   example, for Slow Start as specified in [RFC5681], equation 2 in
+   [RFC5681] becomes:
 
    cwnd_new = cwnd + min (N, SMSS) cwnd = min(cwnd_new, 2*maxFS)
 
-   Similarly, with rule #2, equation 3 in [RFC5681] becomes:
+   Similarly, with rule #2 applied to Congestion Avoidance, equation 3
+   in [RFC5681] becomes:
 
    cwnd_new = cwnd + SMSS*SMSS/cwnd cwnd = min(cwnd_new, 1+maxFS)
 
@@ -161,9 +160,9 @@ Table of Contents
 
 3.1.  Discussion
 
-   If cwnd is limited for multiple RTTs, either by the application or by
-   rwnd, continuously increasing it can cause a mismatch between cwnd
-   and the capacity the path provides.  Such unlimited increase is
+   If the sender is limited for multiple RTTs, either by the application
+   or by rwnd, continuously increasing cwnd can cause a mismatch between
+   cwnd and the capacity the path provides.  Such unlimited increase is
    therefore disallowed by the first rule.
 
    However, in most common congestion control mechanisms, a cwnd that
@@ -176,9 +175,9 @@ Table of Contents
    The second rule in Section 3 is more aggressive than the
    specifications in [RFC9438], [RFC9260] and [RFC9002], but it follows
    general congestion control principles.  It is not possible for an
-   application or a receiver (using rwnd, for instance) to provoke an
-   unlimited increase using this rule because it is never more
-   aggressive than congestion control with an unconstrained sender.
+   application or a receiver (using rwnd, for instance) to provoke a
+   cwnd increase that would exceed the congestion control behavior with
+   an unconstrained sender.
 
 5.  IANA Considerations
 
@@ -307,16 +306,16 @@ A.3.1.  Specification
 A.3.2.  Assessment
 
    The quoted statement from [RFC9260] prescribes the same cwnd growth
-   limitation that is also specified for Cubic, and implemented for both
+   limitation that is also specified for Cubic and implemented for both
    Reno and Cubic in Linux.  It is in accordance with rule #1 in
    Section 3, and more conservative than rule #2 in Section 3.
 
    Section 7.2.1 of [RFC9260] is specifically limited to Slow Start.
    Congestion Avoidance is discussed in Section 7.2.2 of [RFC9260], but
-   this section neither contains nor refers back to the rule that limits
-   cwnd growth in Section 7.2.1.  It is thus implicitly clear that the
-   quoted rule only applies to Slow Start, whereas the rules in
-   Section 3 apply to both Slow Start and Congestion Avoidance.
+   this section neither contains a similar rule nor refers back to the
+   rule that limits cwnd growth in Section 7.2.1.  It is thus implicitly
+   clear that the quoted rule only applies to Slow Start, whereas the
+   rules in Section 3 apply to both Slow Start and Congestion Avoidance.
 
 A.4.  QUIC
 
