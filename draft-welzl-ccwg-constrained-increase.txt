@@ -4,17 +4,21 @@
 
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
-Intended status: Informational                          11 December 2023
-Expires: 13 June 2024
+Intended status: Standards Track                            T. Henderson
+Expires: 14 June 2024                   Please fill out your affiliation
+                                                            G. Fairhurst
+                                                  University of Aberdeen
+                                                        12 December 2023
 
 
-       Application-Constrained Increase of the Congestion Window
+             Constrained Increase of the Congestion Window
               draft-welzl-ccwg-constrained-increase-latest
 
 Abstract
 
-   TODO Yeah we crazy people want to increase even when the app is
-   limited!  Whoa!
+   This document specifies how transport protocols should increase their
+   congestion window when the sender is constrained, either by the
+   application stopping to supply data or by flow control.
 
 About This Document
 
@@ -49,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2024.
+   This Internet-Draft will expire on 14 June 2024.
 
 Copyright Notice
 
@@ -73,7 +77,7 @@ Table of Contents
    4.  IANA Considerations
    5.  Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -110,8 +114,28 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Michael Welzl
    University of Oslo
+   PO Box 1080 Blindern
+   0316  Oslo
+   Norway
    Email: michawe@ifi.uio.no
+   URI:   http://welzl.at/
+
+
+   Tom Henderson
+   Please fill out your affiliation
+   it's really optional, I think.
+   City
+   Email: tomh@tomh.org
+   URI:   https://tomh.org/
+
+
+   Godred Fairhurst
+   University of Aberdeen
+   Fraser Noble Building
+   Aberdeen, AB24 3UE
+   Email: gorry@erg.abdn.ac.uk
+   URI:   https://www.erg.abdn.ac.uk/
