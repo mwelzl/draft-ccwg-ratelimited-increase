@@ -1288,16 +1288,20 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
       </ol>
 <p id="section-3-3">In rule #2, "inc" is a function returning the maximum unconstrained increase that would be carried out by the congestion control mechanism within one RTT, based on the "maxFS" parameter. For example, for Slow Start as specified in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span>, equation 2 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">```
-cwnd_new = cwnd + min (N, SMSS)<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">cwnd = min(cwnd_new, 2*maxFS)
-```<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">Similarly, with rule #2 applied to Congestion Avoidance, equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">```
-cwnd_new = cwnd + SMSS*SMSS/cwnd<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">cwnd = min(cwnd_new, 1+maxFS)
-```<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">maxFS is the largest FlightSize value since the last time cwnd was decreased. If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-4">
+<pre>
+cwnd_new = cwnd + min (N, SMSS)
+cwnd = min(cwnd_new, 2*maxFS)
+</pre><a href="#section-3-4" class="pilcrow">¶</a>
+</div>
+<p id="section-3-5">Similarly, with rule #2 applied to Congestion Avoidance, equation 3 in <span>[<a href="#RFC5681" class="cite xref">RFC5681</a>]</span> becomes:<a href="#section-3-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-6">
+<pre>
+cwnd_new = cwnd + SMSS*SMSS/cwnd
+cwnd = min(cwnd_new, 1+maxFS)
+</pre><a href="#section-3-6" class="pilcrow">¶</a>
+</div>
+<p id="section-3-7">maxFS is the largest FlightSize value since the last time cwnd was decreased. If cwnd has never been decreased, it is the maximum FlightSize value since the beginning of the data transfer.<a href="#section-3-7" class="pilcrow">¶</a></p>
 <div id="discussion">
 <section id="section-3.1">
         <h3 id="name-discussion">

@@ -147,16 +147,14 @@ Table of Contents
    example, for Slow Start as specified in [RFC5681], equation 2 in
    [RFC5681] becomes:
 
-   ``` cwnd_new = cwnd + min (N, SMSS)
-
-   cwnd = min(cwnd_new, 2*maxFS) ```
+   cwnd_new = cwnd + min (N, SMSS)
+   cwnd = min(cwnd_new, 2*maxFS)
 
    Similarly, with rule #2 applied to Congestion Avoidance, equation 3
    in [RFC5681] becomes:
 
-   ``` cwnd_new = cwnd + SMSS*SMSS/cwnd
-
-   cwnd = min(cwnd_new, 1+maxFS) ```
+   cwnd_new = cwnd + SMSS*SMSS/cwnd
+   cwnd = min(cwnd_new, 1+maxFS)
 
    maxFS is the largest FlightSize value since the last time cwnd was
    decreased.  If cwnd has never been decreased, it is the maximum
