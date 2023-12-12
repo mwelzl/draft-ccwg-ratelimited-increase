@@ -4,10 +4,10 @@
 
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
-Updates: RFC5681, RFC9438, RFC9260 (if approved)            T. Henderson
-Intended status: Standards Track        Please fill out your affiliation
-Expires: 14 June 2024                                       G. Fairhurst
-                                                  University of Aberdeen
+Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
+         approved)                      Please fill out your affiliation
+Intended status: Standards Track                            G. Fairhurst
+Expires: 14 June 2024                             University of Aberdeen
                                                         12 December 2023
 
 
@@ -92,6 +92,11 @@ Table of Contents
        A.2.3.  Assessment
      A.3.  SCTP
        A.3.1.  Specification
+       A.3.2.  Assessment
+     A.4.  QUIC
+       A.4.1.  Specification
+       A.4.2.  Assessment
+     A.5.  Others
    Authors' Addresses
 
 1.  Introduction
@@ -180,6 +185,10 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC9002]  Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
+              and Congestion Control", RFC 9002, DOI 10.17487/RFC9002,
+              May 2021, <https://www.rfc-editor.org/rfc/rfc9002>.
+
    [RFC9260]  Stewart, R., Tüxen, M., and K. Nielsen, "Stream Control
               Transmission Protocol", RFC 9260, DOI 10.17487/RFC9260,
               June 2022, <https://www.rfc-editor.org/rfc/rfc9260>.
@@ -256,8 +265,8 @@ A.2.  CUBIC
 
 A.2.1.  Specification
 
-   Section 5.8 of [RFC9438] says: Cubic doesn't increase cwnd when it's
-   limited by the sending application or rwnd.
+   Section 5.8 of [RFC9438] says: >Cubic doesn't increase cwnd when it's
+   limited by the sending application or rwnd`
 
 A.2.2.  Implementation
 
@@ -274,7 +283,60 @@ A.3.  SCTP
 
 A.3.1.  Specification
 
-   [RFC9260] to be discussed here.
+   Section 7.2.1 of [RFC9260] says: >When cwnd is less than or equal to
+   ssthresh, an SCTP endpoint MUST use the slow-start algorithm to
+   increase cwnd only if the current congestion window is being fully
+   utilized and the data sender is not in Fast Recovery.  Only when
+   these two conditions are met can the cwnd be increased; otherwise,
+   the cwnd MUST NOT be increased.
+
+A.3.2.  Assessment
+
+   The quoted statement from [RFC9260] prescribes the same cwnd growth
+   limitation that is also specified for Cubic, and implemented for both
+   Reno and Cubic in Linux.  It is in accordance with rule #1 in
+   Section 3, and more conservative than rule #2 in Section 3.
+
+   Section 7.2.1 of [RFC9260] is specifically limited to Slow Start.
+   Congestion Avoidance is discussed in Section 7.2.2 of [RFC9260] --
+   and this section neither contains nor refers back to the rule that
+   limits cwnd growth in Section 7.2.1.  It is thus implicitly clear
+   that the quoted rule only applies to Slow Start, whereas the rules in
+   Section 3 apply to both Slow Start and Congestion Avoidance.
+
+A.4.  QUIC
+
+A.4.1.  Specification
+
+   Section 7.8 of [RFC9002] states: >When bytes in flight is smaller
+   than the congestion window and sending is not pacing limited, the
+   congestion window is underutilized.  This can happen due to
+   insufficient application data or flow control limits.  When this
+   occurs, the congestion window SHOULD NOT be increased in either slow
+   start or congestion avoidance.
+
+      A sender that paces packets (see Section 7.7) might delay sending
+      packets and not fully utilize the congestion window due to this
+      delay.  A sender SHOULD NOT consider itself application limited if
+      it would have fully utilized the congestion window without pacing
+      delay."
+
+A.4.2.  Assessment
+
+   With the exception of pacing, this specification conservatively
+   limits cwnd growth similar to Cubic and SCTP.  The exception for
+   pacing in the second paragraph requires the application to notify the
+   transport layer that it paces packets.  Pacing is typically done with
+   delays below an RTT; thus, rule #2 in Section 3 should cover this
+   case without the need for such a notification from the application.
+
+A.5.  Others
+
+   Other protocols and mechanisms in RFCs include: TFRC; various
+   multicast and multipath mechanisms; the RMCAT mechanisms for real-
+   time media.  Other protocol specs containing congestion control
+   include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC.  This can get
+   huge... how many / which of these should we discuss?
 
 Authors' Addresses
 

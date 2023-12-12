@@ -1028,7 +1028,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">Constrained Increase of the Congestion W</td>
+<td class="center">Constrained cwnd Increase</td>
 <td class="right">December 2023</td>
 </tr></thead>
 <tfoot><tr>
@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-welzl-ccwg-constrained-increase-latest</dd>
 <dt class="label-updates">Updates:</dt>
 <dd class="updates">
-<a href="https://www.rfc-editor.org/rfc/rfcRFC5681" class="eref">RFC5681</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9438" class="eref">RFC9438</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9260" class="eref">RFC9260</a> (if approved)</dd>
+<a href="https://www.rfc-editor.org/rfc/rfcRFC5681" class="eref">RFC5681</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9002" class="eref">RFC9002</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9260" class="eref">RFC9260</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9438" class="eref">RFC9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2023-12-12" class="published">12 December 2023</time>
@@ -1214,7 +1214,24 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.1">
                     <p id="section-toc.1-1.7.2.3.2.1.1"><a href="#appendix-A.3.1" class="auto internal xref">A.3.1</a>.  <a href="#name-specification-3" class="internal xref">Specification</a></p>
 </li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.2">
+                    <p id="section-toc.1-1.7.2.3.2.2.1"><a href="#appendix-A.3.2" class="auto internal xref">A.3.2</a>.  <a href="#name-assessment-3" class="internal xref">Assessment</a></p>
+</li>
                 </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
+                <p id="section-toc.1-1.7.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-quic" class="internal xref">QUIC</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4.2.1">
+                    <p id="section-toc.1-1.7.2.4.2.1.1"><a href="#appendix-A.4.1" class="auto internal xref">A.4.1</a>.  <a href="#name-specification-4" class="internal xref">Specification</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4.2.2">
+                    <p id="section-toc.1-1.7.2.4.2.2.1"><a href="#appendix-A.4.2" class="auto internal xref">A.4.2</a>.  <a href="#name-assessment-4" class="internal xref">Assessment</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.5">
+                <p id="section-toc.1-1.7.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-others" class="internal xref">Others</a></p>
 </li>
             </ul>
 </li>
@@ -1320,6 +1337,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9002">[RFC9002]</dt>
+        <dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">I. Swett, Ed.</span>, <span class="refTitle">"QUIC Loss Detection and Congestion Control"</span>, <span class="seriesInfo">RFC 9002</span>, <span class="seriesInfo">DOI 10.17487/RFC9002</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9002">https://www.rfc-editor.org/rfc/rfc9002</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9260">[RFC9260]</dt>
         <dd>
 <span class="refAuthor">Stewart, R.</span>, <span class="refAuthor">Tüxen, M.</span>, and <span class="refAuthor">K. Nielsen</span>, <span class="refTitle">"Stream Control Transmission Protocol"</span>, <span class="seriesInfo">RFC 9260</span>, <span class="seriesInfo">DOI 10.17487/RFC9260</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9260">https://www.rfc-editor.org/rfc/rfc9260</a>&gt;</span>. </dd>
@@ -1422,7 +1443,8 @@ information about the state of the network path the flow is using.<a href="#appe
           <h4 id="name-specification-2">
 <a href="#appendix-A.2.1" class="section-number selfRef">A.2.1. </a><a href="#name-specification-2" class="section-name selfRef">Specification</a>
           </h4>
-<p id="appendix-A.2.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> says: <code>Cubic doesn't increase cwnd when it's limited by the sending application or rwnd</code>.<a href="#appendix-A.2.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9438#section-5.8" class="relref">Section 5.8</a> of [<a href="#RFC9438" class="cite xref">RFC9438</a>]</span> says:
+&gt;Cubic doesn't increase cwnd when it's limited by the sending application or rwnd`<a href="#appendix-A.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="implementation">
@@ -1457,9 +1479,56 @@ information about the state of the network path the flow is using.<a href="#appe
           <h4 id="name-specification-3">
 <a href="#appendix-A.3.1" class="section-number selfRef">A.3.1. </a><a href="#name-specification-3" class="section-name selfRef">Specification</a>
           </h4>
-<p id="appendix-A.3.1-1"><span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> to be discussed here.<a href="#appendix-A.3.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> says:
+&gt;When cwnd is less than or equal to ssthresh, an SCTP endpoint <span class="bcp14">MUST</span> use the slow-start algorithm to increase cwnd only if the current congestion window is being fully utilized and the data sender is not in Fast Recovery. Only when these two conditions are met can the cwnd be increased; otherwise, the cwnd <span class="bcp14">MUST NOT</span> be increased.<a href="#appendix-A.3.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="assessment-2">
+<section id="appendix-A.3.2">
+          <h4 id="name-assessment-3">
+<a href="#appendix-A.3.2" class="section-number selfRef">A.3.2. </a><a href="#name-assessment-3" class="section-name selfRef">Assessment</a>
+          </h4>
+<p id="appendix-A.3.2-1">The quoted statement from <span>[<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> prescribes the same cwnd growth limitation that is also specified for Cubic, and implemented for both Reno and Cubic in Linux. It is in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>, and more conservative than rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.3.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3.2-2"><span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.1" class="relref">Section 7.2.1</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> is specifically limited to Slow Start. Congestion Avoidance is discussed in <span><a href="https://rfc-editor.org/rfc/rfc9260#section-7.2.2" class="relref">Section 7.2.2</a> of [<a href="#RFC9260" class="cite xref">RFC9260</a>]</span> -- and this section neither contains nor refers back to the rule that limits cwnd growth in Section 7.2.1. It is thus implicitly clear that the quoted rule only applies to Slow Start, whereas the rules in <a href="#rules" class="auto internal xref">Section 3</a> apply to both Slow Start and Congestion Avoidance.<a href="#appendix-A.3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="quic">
+<section id="appendix-A.4">
+        <h3 id="name-quic">
+<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-quic" class="section-name selfRef">QUIC</a>
+        </h3>
+<div id="specification-3">
+<section id="appendix-A.4.1">
+          <h4 id="name-specification-4">
+<a href="#appendix-A.4.1" class="section-number selfRef">A.4.1. </a><a href="#name-specification-4" class="section-name selfRef">Specification</a>
+          </h4>
+<p id="appendix-A.4.1-1"><span><a href="https://rfc-editor.org/rfc/rfc9002#section-7.8" class="relref">Section 7.8</a> of [<a href="#RFC9002" class="cite xref">RFC9002</a>]</span> states:
+&gt;When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window <span class="bcp14">SHOULD NOT</span> be increased in either slow start or congestion avoidance.<a href="#appendix-A.4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="appendix-A.4.1-2.1">
+              <p id="appendix-A.4.1-2.1.1">A sender that paces packets (see Section 7.7) might delay sending packets and not fully utilize the congestion window due to this delay. A sender <span class="bcp14">SHOULD NOT</span> consider itself application limited if it would have fully utilized the congestion window without pacing delay."<a href="#appendix-A.4.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="assessment-3">
+<section id="appendix-A.4.2">
+          <h4 id="name-assessment-4">
+<a href="#appendix-A.4.2" class="section-number selfRef">A.4.2. </a><a href="#name-assessment-4" class="section-name selfRef">Assessment</a>
+          </h4>
+<p id="appendix-A.4.2-1">With the exception of pacing, this specification conservatively limits cwnd growth similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in <a href="#rules" class="auto internal xref">Section 3</a> should cover this case without the need for such a notification from the application.<a href="#appendix-A.4.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="others">
+<section id="appendix-A.5">
+        <h3 id="name-others">
+<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-others" class="section-name selfRef">Others</a>
+        </h3>
+<p id="appendix-A.5-1">Other protocols and mechanisms in RFCs include: TFRC; various multicast and multipath mechanisms; the RMCAT mechanisms for real-time media. Other protocol specs containing congestion control include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC. This can get huge... how many / which of these should we discuss?<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
