@@ -4,7 +4,7 @@
 
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
-Updates: RFC5681, RFC9438 (if approved)                     T. Henderson
+Updates: RFC5681, RFC9438, RFC9260 (if approved)            T. Henderson
 Intended status: Standards Track        Please fill out your affiliation
 Expires: 14 June 2024                                       G. Fairhurst
                                                   University of Aberdeen
@@ -72,20 +72,45 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Terminology
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  Normative References
+   3.  Constrained cwnd Increase
+     3.1.  Discussion
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
    Acknowledgments
+   The state of the art
+     TCP
+       Specification
+       Implementation
+     SCTP
+       Specification
    Authors' Addresses
 
 1.  Introduction
 
    RFCs specifying congestion control mechanisms for various protocols
    diverge regarding the rules for increasing the congestion window
-   (cwnd) when the sender is limited, either by the application
+   (cwnd) when the sender is constrained.  We call a sender
+   "constrained" when the sender does not have data to send (i.e., the
+   application has not provided enough data) even though the congestion
+   control rules would allow it to, or when flow control limits apply
+   (e.g., the receiver window (rwnd) in case of TCP).
 
-   There is no uniform rule across in the RFC series on what rules
+   This document specifies a uniform rule that MUST apply and gives a
+   recommendation that congestion control implementations SHOULD follow.
+   It also gives an overview of the divergence in RFCs and some current
+   implementations regarding the constrained cwnd increase behavior.
+
+   Different from [RFC5952], this document is solely concerned with the
+   increase behavior.
+
+1.1.  Terminology
+
+   This document uses the terms defined in Section 2 of [RFC5681].
 
 2.  Conventions and Definitions
 
@@ -95,28 +120,130 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Security Considerations
+3.  Constrained cwnd Increase
+
+   Senders of congestion controlled transport protocols:
+
+   1.  MUST impose a limit on cwnd growth when FlightSize < cwnd.
+
+   2.  SHOULD limit cwnd growth with inc(max(FlightSize)), where "inc"
+       is the maximum unconstrained increase that would be carried out
+       by the congestion control mechanism within one RTT, based on the
+       "max(FlightSize)" parameter.  For example, in case of Slow Start
+       specified in [RFC5681], this limit is 2*max(FlightSize), and for
+       Congestion Avoidance specified in [RFC5681], this limit is
+       max(FlightSize)+1.
+
+   The maximum value to be used in the above rules is calculated as the
+   maximum since the last time cwnd was decreased.  If cwnd has never
+   been decreased, it is the maximum since the beginning of the data
+   transfer.
+
+3.1.  Discussion
+
+   If the cwnd is limited for multiple RTTs, either by the application
+   or by rwnd, continuously increasing it in every RTT causes a mismatch
+   between cwnd and the capacity the path provides.  Such unlimited
+   increase is therefore disallowed by the first rule.
+
+   However, in most common congestion control mechanisms, a cwnd that
+   has been fully utilized during a RTT grants an increase during the
+   following RTT.  Thus, such an increase is allowed by the second rule.
+
+4.  Security Considerations
 
    TODO Security
 
-4.  IANA Considerations
+5.  IANA Considerations
 
    This document has no IANA actions.
 
-5.  Normative References
+6.  References
+
+6.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
+   [RFC5681]  Allman, M., Paxson, V., and E. Blanton, "TCP Congestion
+              Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
+              <https://www.rfc-editor.org/rfc/rfc5681>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC9260]  Stewart, R., Tüxen, M., and K. Nielsen, "Stream Control
+              Transmission Protocol", RFC 9260, DOI 10.17487/RFC9260,
+              June 2022, <https://www.rfc-editor.org/rfc/rfc9260>.
+
+6.2.  Informative References
+
+   [RFC5952]  Kawamura, S. and M. Kawashima, "A Recommendation for IPv6
+              Address Text Representation", RFC 5952,
+              DOI 10.17487/RFC5952, August 2010,
+              <https://www.rfc-editor.org/rfc/rfc5952>.
+
+   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
+              TCP to Support Rate-Limited Traffic", RFC 7661,
+              DOI 10.17487/RFC7661, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7661>.
+
 Acknowledgments
 
    TODO acknowledge.
+
+The state of the art
+
+   This section is meant as input for IETF discussion, and to be removed
+   before publication.
+
+TCP
+
+Specification
+
+   [RFC5681] does not contain a rule to limit cwnd growth when the
+   sender is constrained.  This statement (page 8) even gives an
+   impression that such cwnd growth may be expected:
+
+      Implementation Note: An easy mistake to make is to simply use
+      cwnd, rather than FlightSize, which in some implementations may
+      incidentally increase well beyond rwnd.
+
+   [RFC7661] also gives the impression that this is the expected TCP
+   behavior (which [RFC7661] changes), on page 4:
+
+      Standard TCP does not impose additional restrictions on the growth
+      of the congestion window when a TCP sender is unable to send at
+      the maximum rate allowed by the cwnd.  In this case, the rate-
+      limited sender may grow a cwnd far beyond that corresponding to
+      the current transmit rate, resulting in a value that does not
+      reflect current information about the state of the network path
+      the flow is using.
+
+Implementation
+
+   *  ns-2 allows cwnd to grow in the face of a rwnd constraint.
+      (Application-limited: not tested)
+
+   *  ns-3 allows cwnd to grow in the face of either an application or
+      rwnd constraint.
+
+   *  Linux only allows cwnd to grow when the sender is unconstrained.
+      Specifically, for Linux kernel 6.0.9, an increase is only allowed
+      if a function called tcp_is_cwnd_limited in tcp.h yields true.
+      This function checks the flag tp->is_cwnd_limited, which is
+      initialised to false in tcp_output.c and later set to true only if
+      FlightSize is greater or equal to cwnd (is_cwnd_limited |=
+      (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))).
+
+SCTP
+
+Specification
+
+   [RFC9260] to be discussed here.
 
 Authors' Addresses
 
