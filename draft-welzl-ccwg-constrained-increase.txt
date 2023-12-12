@@ -74,7 +74,7 @@ Table of Contents
    1.  Introduction
      1.1.  Terminology
    2.  Conventions and Definitions
-   3.  Constrained cwnd Increase
+   3.  Increase rules
      3.1.  Discussion
    4.  Security Considerations
    5.  IANA Considerations
@@ -101,13 +101,14 @@ Table of Contents
 
 1.  Introduction
 
-   We call a sender "constrained" when the sender does not have data to
-   send (i.e., the application has not provided enough data) even though
-   the congestion control rules would allow it to, or when flow control
-   limits apply (e.g., the receiver window (rwnd) in case of TCP).  RFCs
-   specifying congestion control mechanisms diverge regarding the rules
-   for increasing the congestion window (cwnd) when the sender is
-   constrained.
+   We call a sender of a congestion controlled transport protocol
+   "constrained" when it does not have data to send (i.e., the
+   application has not provided enough data) even though the congestion
+   control rules would allow it to transmit data.  A sender can also be
+   constrained when flow control limits apply (e.g., the receiver window
+   (rwnd) in case of TCP).  RFCs specifying congestion control
+   mechanisms diverge regarding the rules for increasing the congestion
+   window (cwnd) when the sender is constrained.
 
    This document specifies a uniform rule that MUST apply and gives a
    recommendation that congestion control implementations SHOULD follow.
@@ -130,39 +131,41 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Constrained cwnd Increase
+3.  Increase rules
 
    Senders of congestion controlled transport protocols:
 
    1.  MUST impose a limit on cwnd growth when FlightSize < cwnd.
 
-   2.  SHOULD limit cwnd growth with inc(max(FlightSize)), where "inc"
-       is the maximum unconstrained increase that would be carried out
-       by the congestion control mechanism within one RTT, based on the
-       "max(FlightSize)" parameter.  For example, in case of Slow Start
-       specified in [RFC5681], this limit is 2*max(FlightSize), and for
-       Congestion Avoidance specified in [RFC5681], this limit is
-       max(FlightSize)+1.
+   2.  SHOULD limit cwnd growth with inc(max(FlightSize)).
 
-   The maximum value to be used in the above rules is calculated as the
-   maximum since the last time cwnd was decreased.  If cwnd has never
-   been decreased, it is the maximum since the beginning of the data
+   In rule #2, "inc" is a function returning the maximum unconstrained
+   increase that would be carried out by the congestion control
+   mechanism within one RTT, based on the "max(FlightSize)" parameter.
+   For example, in case of Slow Start as specified in [RFC5681], this
+   limit is 2*max(FlightSize), and for Congestion Avoidance as specified
+   in [RFC5681], this limit is max(FlightSize)+1.
+
+   The maximum value to be used in rule #2 is calculated as the maximum
+   since the last time cwnd was decreased.  If cwnd has never been
+   decreased, it is the maximum since the beginning of the data
    transfer.
 
 3.1.  Discussion
 
-   If the cwnd is limited for multiple RTTs, either by the application
-   or by rwnd, continuously increasing it in every RTT causes a mismatch
-   between cwnd and the capacity the path provides.  Such unlimited
-   increase is therefore disallowed by the first rule.
+   If cwnd is limited for multiple RTTs, either by the application or by
+   rwnd, continuously increasing it causes a mismatch between cwnd and
+   the capacity the path provides.  Such unlimited increase is therefore
+   disallowed by the first rule.
 
    However, in most common congestion control mechanisms, a cwnd that
-   has been fully utilized during a RTT grants an increase during the
-   following RTT.  Thus, such an increase is allowed by the second rule.
+   has been fully utilized during an RTT grants an increase during the
+   immediately following RTT.  Thus, such an increase is allowed by the
+   second rule.
 
 4.  Security Considerations
 
-   TODO Security
+   TODO
 
 5.  IANA Considerations
 
@@ -212,8 +215,8 @@ Table of Contents
 
 Appendix A.  The state of RFCs and implementations
 
-   This section is meant as input for IETF discussion, and to be removed
-   before publication.
+   This section is meant as input for IETF discussion, and should be
+   removed before publication.
 
 A.1.  TCP ("Reno" congestion control)
 
