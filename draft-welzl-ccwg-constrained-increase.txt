@@ -4,9 +4,9 @@
 
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
-Intended status: Standards Track                            T. Henderson
-Expires: 14 June 2024                   Please fill out your affiliation
-                                                            G. Fairhurst
+Updates: RFC5681, RFC9438 (if approved)                     T. Henderson
+Intended status: Standards Track        Please fill out your affiliation
+Expires: 14 June 2024                                       G. Fairhurst
                                                   University of Aberdeen
                                                         12 December 2023
 
@@ -81,7 +81,11 @@ Table of Contents
 
 1.  Introduction
 
-   TODO Introduction and now I'm really still only testing this.
+   RFCs specifying congestion control mechanisms for various protocols
+   diverge regarding the rules for increasing the congestion window
+   (cwnd) when the sender is limited, either by the application
+
+   There is no uniform rule across in the RFC series on what rules
 
 2.  Conventions and Definitions
 
