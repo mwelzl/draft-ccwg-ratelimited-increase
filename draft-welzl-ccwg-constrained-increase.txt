@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                      Please fill out your affiliation
 Intended status: Standards Track                            G. Fairhurst
-Expires: 14 June 2024                             University of Aberdeen
-                                                        12 December 2023
+Expires: 16 June 2024                             University of Aberdeen
+                                                        14 December 2023
 
 
              Constrained Increase of the Congestion Window
@@ -17,8 +17,9 @@ Expires: 14 June 2024                             University of Aberdeen
 Abstract
 
    This document specifies how transport protocols should increase their
-   congestion window when the sender is constrained, either by the
-   application stopping to supply data or by flow control.
+   congestion window when the sender is constrained.  Such a constraint
+   can be caused by the application stopping to supply data or by flow
+   control.
 
 About This Document
 
@@ -53,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 June 2024.
+   This Internet-Draft will expire on 16 June 2024.
 
 Copyright Notice
 
@@ -167,10 +168,10 @@ Table of Contents
    cwnd and the capacity the path provides.  Such unlimited increase is
    therefore disallowed by the first rule.
 
-   However, in most common congestion control mechanisms, a cwnd that
-   has been fully utilized during an RTT grants an increase during the
-   immediately following RTT.  Thus, such an increase is allowed by the
-   second rule.
+   However, in most common congestion control mechanisms, in the absence
+   of an indication of congestion, a cwnd that has been fully utilized
+   during an RTT grants an increase during the immediately following
+   RTT.  Thus, such an increase is allowed by the second rule.
 
 4.  Security Considerations
 
