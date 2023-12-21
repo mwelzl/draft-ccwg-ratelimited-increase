@@ -12,7 +12,7 @@ Expires: 23 June 2024                             University of Aberdeen
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
-              draft-welzl-ccwg-constrained-increase-latest
+              draft-welzl-ccwg-ratelimited-increase-latest
 
 Abstract
 
@@ -29,7 +29,7 @@ About This Document
    https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-
    ccwg-constrained-increase.html.  Status information for this document
    may be found at https://datatracker.ietf.org/doc/draft-welzl-ccwg-
-   constrained-increase/.
+   ratelimited-increase/.
 
    Discussion of this document takes place on the Congestion Control
    Working Group Working Group mailing list (mailto:ccwg@ietf.org),
