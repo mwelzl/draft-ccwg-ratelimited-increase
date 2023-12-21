@@ -11,13 +11,13 @@ Expires: 23 June 2024                             University of Aberdeen
                                                         21 December 2023
 
 
-             Constrained Increase of the Congestion Window
+   Increase of the Congestion Window when the Sender Is Rate-Limited
               draft-welzl-ccwg-constrained-increase-latest
 
 Abstract
 
    This document specifies how transport protocols should increase their
-   congestion window when the sender is constrained.  Such a constraint
+   congestion window when the sender is rate-limited.  Such a limitation
    can be caused by the application stopping to supply data or by flow
    control.
 
@@ -102,21 +102,22 @@ Table of Contents
 
 1.  Introduction
 
-   We call a sender of a congestion controlled transport protocol
-   "constrained" when it does not have data to send (i.e., the
-   application has not provided sufficient data) even though the
-   congestion control rules would allow it to transmit data.  A sender
-   can also be constrained by the receiver when flow control limits
-   apply (e.g., via the receiver window (rwnd) in case of TCP, of the
-   flow credit in quic).  RFCs specifying congestion control mechanisms
-   diverge regarding the rules for increasing the congestion window
-   (cwnd) when the sender is constrained.
+   We call a sender of a congestion controlled transport protocol "rate-
+   limited" when it does not have data to send (i.e., the application
+   has not provided sufficient data) even though the congestion control
+   rules would allow it to transmit data.  A sender can also be rate
+   limited by the receiver when flow control limits apply (e.g., via the
+   receiver window (rwnd) in case of TCP, of the flow credit in quic).
+   RFCs specifying congestion control mechanisms diverge regarding the
+   rules for increasing the congestion window (cwnd) when the sender is
+   rate-limited.
 
    This document specifies a uniform rule that congestion control
    mechanisms MUST apply and gives a recommendation that congestion
    control implementations SHOULD follow.  An appendix provides an
    overview of the divergence in current RFCs and some current
-   implementations regarding constrained cwnd increase.
+   implementations regarding cwnd increase when the sender is rate-
+   limited.
 
    Whereas, Congestion Window Validation (CWV) [RFC7661] provides an
    experimental specification for how to manage a congestion window that
