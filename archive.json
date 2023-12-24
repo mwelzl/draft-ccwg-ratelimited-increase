@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-21T00:25:54.939905+00:00",
-  "repo": "mwelzl/draft-ccwg-constrained-increase",
+  "timestamp": "2023-12-24T00:28:00.128488+00:00",
+  "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
       "name": "bug",
@@ -54,8 +54,8 @@
       "number": 1,
       "id": "I_kwDOK4gIBc56FVV0",
       "title": "Other term instead of \"constrained\"?",
-      "url": "https://github.com/mwelzl/draft-ccwg-constrained-increase/issues/1",
-      "state": "OPEN",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/1",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -64,8 +64,8 @@
       "labels": [],
       "body": "From Tom's email:\r\n\r\nI am not sure about introducing a new term 'constrained' when there exists a historic term 'application-limited'.  Is there a reason you are avoiding 'application-limited'?  'bounded' may also be a more commonly used term in this regard.\r\n",
       "createdAt": "2023-12-19T09:02:12Z",
-      "updatedAt": "2023-12-20T14:28:22Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-21T09:42:30Z",
+      "closedAt": "2023-12-21T09:42:30Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -73,6 +73,13 @@
           "body": "My PR #3  tried to remove some of this - its would be possible to remove all use of constrained if we wish.",
           "createdAt": "2023-12-20T14:28:22Z",
           "updatedAt": "2023-12-20T14:28:22Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I'll do that, I'll change everything to directly say \"rate limited\".",
+          "createdAt": "2023-12-21T09:21:44Z",
+          "updatedAt": "2023-12-21T09:21:44Z"
         }
       ]
     },
@@ -80,7 +87,7 @@
       "number": 2,
       "id": "I_kwDOK4gIBc56FVux",
       "title": "Better distinguish from RFC 7661",
-      "url": "https://github.com/mwelzl/draft-ccwg-constrained-increase/issues/2",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/2",
       "state": "OPEN",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
@@ -90,7 +97,7 @@
       "labels": [],
       "body": "From Tom's email:\r\n\r\nIt seems to me that RFC 7661 already claims the scope of operation when the TCP is application-limited, so perhaps this has to more clearly state that this is an alternative to letting congestion window grow and then performing CWV when needed.  It also seems that the first sentence in section 4.4.2 of RFC 7661 is what this draft specifically addresses:\r\n\r\n```\r\n   TCP congestion control allows a sender to accumulate a cwnd that\r\n   would allow it to send a burst of segments with a total size up to\r\n   the difference between the FlightSize and cwnd. \r\n```\r\n\r\nHere, we are proposing that TCP congestion control not allow a sender to accumulate an unlimited cwnd, so perhaps this needs to be clarified more directly (e.g., \"one could follow RFC 7661 and other RFCs and let cwnd accumulate to large values and then later perform CWV, or one could constrain the growth of cwnd during application-limited phases, or both.  This draft proposes guidelines for bounding the growth of cwnd during application-limited intervals.\")",
       "createdAt": "2023-12-19T09:03:14Z",
-      "updatedAt": "2023-12-20T14:29:14Z",
+      "updatedAt": "2023-12-21T09:58:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -99,6 +106,13 @@
           "body": "Started in PR #3",
           "createdAt": "2023-12-20T14:29:13Z",
           "updatedAt": "2023-12-20T14:29:13Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Sorry, this shouldn't have been closed, I was too eager to close things as I thought I need to create a new repo",
+          "createdAt": "2023-12-21T09:58:39Z",
+          "updatedAt": "2023-12-21T09:58:39Z"
         }
       ]
     },
@@ -106,17 +120,34 @@
       "number": 4,
       "id": "I_kwDOK4gIBc56Or18",
       "title": "Security Consideration.",
-      "url": "https://github.com/mwelzl/draft-ccwg-constrained-increase/issues/4",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/4",
       "state": "OPEN",
       "author": "gorryfair",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "gorryfair"
+      ],
       "labels": [],
       "body": "I agree with the content of the security considerations section, but I am unsure that this is a real security issue.\r\n\r\nI think it might be wiser to move this text and assert something like: \r\n\r\nWhile congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.",
       "createdAt": "2023-12-20T14:34:15Z",
-      "updatedAt": "2023-12-20T14:34:15Z",
+      "updatedAt": "2023-12-21T09:57:44Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Change applied in the version for the new repo",
+          "createdAt": "2023-12-21T09:44:11Z",
+          "updatedAt": "2023-12-21T09:44:11Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Sorry, I closed this as I thought I need to make a new repo. Anyway, I did address this with a push to master - @gorryfair  could you check, and close the issue if you agree with my change?",
+          "createdAt": "2023-12-21T09:57:34Z",
+          "updatedAt": "2023-12-21T09:57:34Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -124,27 +155,86 @@
       "number": 3,
       "id": "PR_kwDOK4gIBc5iehYn",
       "title": "Suggestion on rate-limited",
-      "url": "https://github.com/mwelzl/draft-ccwg-constrained-increase/pull/3",
-      "state": "OPEN",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/3",
+      "state": "MERGED",
       "author": "gorryfair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Tried to improve the spec language.",
       "createdAt": "2023-12-20T14:27:23Z",
-      "updatedAt": "2023-12-20T14:43:55Z",
-      "baseRepository": "mwelzl/draft-ccwg-constrained-increase",
+      "updatedAt": "2023-12-21T09:16:40Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "5d3cb73dcc3197d7d6a413c95ceb446072db9bec",
-      "headRepository": "mwelzl/draft-ccwg-constrained-increase",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "headRefName": "gorryfair-patch-1",
-      "headRefOid": "cd2bf34169f5c333ba3c5d557a85bad7d19ba4fa",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "aeb1877d8369969894e561392092c967b6ac5926",
+      "closedAt": "2023-12-21T09:16:40Z",
+      "mergedAt": "2023-12-21T09:16:40Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "e6ce465dbf32283be4efaede8c41c1b02ce1e8f8"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5q151e",
+          "commit": {
+            "abbreviatedOid": "cd2bf34"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Many useful updates, thanks!  I made a few changes which I'll self-approve now (typos, undoing a small fix in text that is a quote, etc.). Then, I'll go ahead and change our text to talk about \"rate-limited\"",
+          "createdAt": "2023-12-21T09:00:01Z",
+          "updatedAt": "2023-12-21T09:14:59Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\n```\r\nI take this out because I'll instead change all the terminology to rate-limited afterwards.",
+              "createdAt": "2023-12-21T09:00:01Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            },
+            {
+              "originalPosition": 61,
+              "body": "```suggestion\r\nIf the sender rate is limited for multiple RTTs, either by the sending application or by the receiving application, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path provides (i.e., over-estimating the capacity).\r\n```",
+              "createdAt": "2023-12-21T09:02:45Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            },
+            {
+              "originalPosition": 93,
+              "body": "```suggestion\r\n{{?RFC7661}} also suggests there is no increase limitation in the standard TCP behavior (which {{?RFC7661}} changes), on page 4:\r\n```",
+              "createdAt": "2023-12-21T09:05:02Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            },
+            {
+              "originalPosition": 104,
+              "body": "```suggestion\r\n- ns-2 allows cwnd to grow when it is rate-limited by rwnd. (Rate-limited by the sending application: not tested.)\r\n```",
+              "createdAt": "2023-12-21T09:05:38Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            },
+            {
+              "originalPosition": 107,
+              "body": "```suggestion\r\n  Specifically, for Linux kernel 2.6.11, an increase is only allowed if a function called `tcp_is_cwnd_limited` in `tcp.h` yields `true`. This function checks the flag `tp->is_cwnd_limited`, which is initialised to `false` in `tcp_output.c` and later set to `true` only if FlightSize is greater or equal to cwnd (`is_cwnd_limited |= (tcp_packets_in_flight(tp) >= tcp_snd_cwnd(tp))`).\r\n```",
+              "createdAt": "2023-12-21T09:10:30Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            },
+            {
+              "originalPosition": 147,
+              "body": "```suggestion\r\n>When bytes in flight is smaller than the congestion window and sending is not pacing limited, the congestion window is underutilized. This can happen due to insufficient application data or flow control limits. When this occurs, the congestion window SHOULD NOT be increased in either slow start or congestion avoidance.\r\n```\r\n\r\nUndoing this change because it's a literal quote from RFC 9002",
+              "createdAt": "2023-12-21T09:12:59Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            },
+            {
+              "originalPosition": 154,
+              "body": "```suggestion\r\nWith the exception of pacing, this specification conservatively limits the growth in cwnd, similar to Cubic and SCTP. The exception for pacing in the second paragraph requires the application to notify the transport layer that it paces packets. Pacing is typically done with delays below an RTT; thus, rule #2 in {{rules}} should cover this case without the need for such a notification from the application.\r\n```",
+              "createdAt": "2023-12-21T09:13:24Z",
+              "updatedAt": "2023-12-21T09:14:59Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
