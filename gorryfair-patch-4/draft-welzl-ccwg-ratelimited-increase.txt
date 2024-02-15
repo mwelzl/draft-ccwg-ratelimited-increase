@@ -98,7 +98,6 @@ Table of Contents
        A.4.1.  Specification
        A.4.2.  Assessment
      A.5.  Others
-   Appendix B.  Security Considerations
    Authors' Addresses
 
 1.  Introduction
@@ -187,12 +186,13 @@ Table of Contents
 
 4.  Security Considerations
 
-   While congestion control issues could result in unwanted competing
-   traffic, they do not directly result in security considerations.
    Transport protocols that provide authentication (including those
    using encryption) or that are carried over protocols that provide
    authentication, can protect the congestion control mechanisms from
    network attack.
+
+   While congestion control design could result in unwanted competing
+   traffic, they do not directly result in new security considerations.
 
 5.  IANA Considerations
 
@@ -369,16 +369,6 @@ A.5.  Others
    time media.  Other protocol specs containing congestion control
    include: DCCP, MP-DCCP, MPTCP, RTP extensions for CC.  This can get
    huge... how many / which of these should we discuss?  XXX}
-
-Appendix B.  Security Considerations
-
-   Transport protocols that provide authentication (including those
-   using encryption) or that are carried over protocols that provide
-   authentication, can protect the congestion control mechanisms from
-   network attack.
-
-   While congestion control issues could result in unwanted competing
-   traffic, they do not directly result in new security considerations.
 
 Authors' Addresses
 
