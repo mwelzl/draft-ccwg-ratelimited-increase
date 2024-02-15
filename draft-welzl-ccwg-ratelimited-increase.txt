@@ -5,7 +5,7 @@
 Congestion Control Working Group                                M. Welzl
 Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
-         approved)                      Please fill out your affiliation
+         approved)                                                      
 Intended status: Standards Track                            G. Fairhurst
 Expires: 18 August 2024                           University of Aberdeen
                                                         15 February 2024
@@ -381,11 +381,10 @@ Authors' Addresses
 
 
    Tom Henderson
-   Please fill out your affiliation
-   it's really optional, I think.
-   City
+   Mercer Island, WA,
+   United States
    Email: tomh@tomh.org
-   URI:   https://tomh.org/
+   URI:   https://www.tomh.org/
 
 
    Godred Fairhurst
