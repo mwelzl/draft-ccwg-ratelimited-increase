@@ -179,10 +179,10 @@ Table of Contents
    (i.e., over-estimating the capacity).  Such unlimited growth in the
    cwnd is therefore disallowed by the first rule.
 
-   However, most common congestion control mechanisms, in the absence of
-   an indication of congestion, grans an increase of cwnd in trhwe
-   following RTT when the cwnd has been fully utilized.  Thus, such an
-   increase is allowed by the second rule.
+   However, in the absence of an indication of congestion and when the
+   cwnd has been fully utilized, most common congestion control
+   mechanisms grant an increase in cwnd for the following RTT.  Thus,
+   such an increase is allowed by the second rule.
 
 4.  Security Considerations
 
