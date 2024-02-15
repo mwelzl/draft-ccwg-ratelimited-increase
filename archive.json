@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-13T00:25:26.938658+00:00",
+  "timestamp": "2024-02-15T00:24:37.839520+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -148,6 +148,57 @@
           "updatedAt": "2023-12-21T09:57:34Z"
         }
       ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOK4gIBc5_EhYT",
+      "title": "Fix Linux kernel text",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/5",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mwelzl"
+      ],
+      "labels": [],
+      "body": "is_cwnd_limited implements what we want, just \"hard-coded\" and for slow start only, since kernel 3.16 which was published in August 2014.\r\n\r\nSee: https://elixir.bootlin.com/linux/v3.16/source/include/net/tcp.h#L985\r\n\r\nThe current text mis-represents Linux, and also talks about a weird old version number.",
+      "createdAt": "2024-02-13T09:41:47Z",
+      "updatedAt": "2024-02-13T10:58:33Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Good find, and we should cite and fix in a PR:-)",
+          "createdAt": "2024-02-13T10:57:21Z",
+          "updatedAt": "2024-02-13T10:57:21Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Will do *very* soon, promise!",
+          "createdAt": "2024-02-13T10:58:33Z",
+          "updatedAt": "2024-02-13T10:58:33Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOK4gIBc5_EiP-",
+      "title": "Insert your affiliation and/or address",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/6",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "tomhenderson"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-13T09:43:34Z",
+      "updatedAt": "2024-02-13T09:43:35Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
