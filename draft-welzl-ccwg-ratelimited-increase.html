@@ -1313,8 +1313,8 @@ If cwnd has never been decreased, it is the maximum FlightSize value since the b
         <h3 id="name-discussion">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-discussion" class="section-name selfRef">Discussion</a>
         </h3>
-<p id="section-3.1-1">If the sender rate is limited for multiple RTTs, either by the sending application or by the receiving application, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path provides (i.e., over-estimating the capacity).
-Such unlimited cwnd increase is therefore disallowed by the first rule.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-adevrtised flow limit, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path supports (i.e., over-estimating the capacity).
+Such unlimited growt in the cwnd is therefore disallowed by the first rule.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT grants an increase during the immediately following RTT.
 Thus, such an increase is allowed by the second rule.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 </section>
