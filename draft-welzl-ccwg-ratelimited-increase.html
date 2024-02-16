@@ -1286,10 +1286,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-1">Irrespective of the current state of a congestion control mechanism, senders of congestion controlled transport protocols:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-2">
 <li id="section-3-2.1">
-          <p id="section-3-2.1.1"><span class="bcp14">MUST</span> limit the growth of cwnd when FlightSize &lt; cwnd.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.1.1"><span class="bcp14">MUST</span> include a way to limit the growth of cwnd when FlightSize &lt; cwnd.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-3-2.2">
-          <p id="section-3-2.2.1"><span class="bcp14">SHOULD</span> limit the growth of cwnd with inc(maxFS).<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1"><span class="bcp14">SHOULD</span> limit the growth of cwnd when FlightSize &lt; cwnd with inc(maxFS).<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
 <p id="section-3-3">In rule #2, "inc" is a function returning the maximum unconstrained increase that would result from the congestion control mechanism within one RTT, based on the "maxFS" parameter.
