@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                      Please fill out your affiliation
 Intended status: Standards Track                            G. Fairhurst
-Expires: 18 August 2024                           University of Aberdeen
-                                                        15 February 2024
+Expires: 19 August 2024                           University of Aberdeen
+                                                        16 February 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 August 2024.
+   This Internet-Draft will expire on 19 August 2024.
 
 Copyright Notice
 
@@ -187,7 +187,7 @@ Table of Contents
 4.  Security Considerations
 
    Transport protocols that provide authentication (including those
-   using encryption) or that are carried over protocols that provide
+   using encryption) or that are carried over protocols which provide
    authentication, can protect the congestion control mechanisms from
    network attack.
 
