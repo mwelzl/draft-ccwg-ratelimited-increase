@@ -1312,10 +1312,10 @@ If cwnd has never been decreased, maxFS is the maximum value of FlightSize since
         <h3 id="name-discussion">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-discussion" class="section-name selfRef">Discussion</a>
         </h3>
-<p id="section-3.1-1">If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised flow limit, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity that is supported by the path (i.e., over-estimating the capacity).
+<p id="section-3.1-1">If the sending rate is less than permitted by cwnd for multiple RTTs, either by the sending application or by the receiver-advertised window, continuously increasing the cwnd would cause a mismatch between the cwnd and the capacity the path supports (i.e., over-estimating the capacity).
 Such unlimited growth in the cwnd is therefore disallowed by the first rule.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">However, in the absence of an indication of congestion and when the cwnd has been fully utilized, most common congestion control mechanisms  grant an increase in cwnd for the following RTT.
-Thus, such an increase is allowed by the second rule.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Thus, such an increase is allowed by the second rule.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1448,8 +1448,8 @@ Specifically, for Linux kernel 2.6.11, an increase is only allowed if a function
           <h4 id="name-assessment">
 <a href="#appendix-A.1.3" class="section-number selfRef">A.1.3. </a><a href="#name-assessment" class="section-name selfRef">Assessment</a>
           </h4>
-<p id="appendix-A.1.3-1">The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in <a href="#rules" class="auto internal xref">Section 3</a>.
-Linux implements a limit in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>; this limit is more conservative than rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.1.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1.3-1">Linux implements a limit in accordance with rule #1 in <a href="#rules" class="auto internal xref">Section 3</a>; the Linux limit is more conservative than rule #2 in <a href="#rules" class="auto internal xref">Section 3</a>.
+The specification and the ns-2 and ns-3 implementations are in conflict with rules #1 and #2 in <a href="#rules" class="auto internal xref">Section 3</a>.<a href="#appendix-A.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
