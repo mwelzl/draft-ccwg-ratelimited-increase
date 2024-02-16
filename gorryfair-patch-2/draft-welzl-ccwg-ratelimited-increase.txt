@@ -117,7 +117,7 @@ Table of Contents
    specification defining how to manage a cwnd that has becone larger
    than the current flight size.  In contrast, this present document
    concerns the increase in cwnd when a sender is rate is limited.
-   These two topics are distinct, but are related, because both define
+   These two topics are distinct, but are related, because both describe
    the managment of cwnd when the sender does not fully utilise the
    current cwnd.
 
