@@ -187,7 +187,7 @@ Table of Contents
 4.  Security Considerations
 
    Transport protocols that provide authentication (including those
-   using encryption) or that are carried over protocols which provide
+   using encryption), or are carried over protocols that provide
    authentication, can protect the congestion control mechanisms from
    network attack.
 
