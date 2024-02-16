@@ -1252,9 +1252,9 @@ It could also occur because the receiver has limited the flow control
 (e.g., by the advertised TCP receiver window (rwnd) or by the conection or stream flow credit in quic).
 Current RFCs specifying congestion control mechanisms diverge regarding the rules for increasing the cwnd when the sender is rate-limited.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Congestion Window Validation (CWV) <span>[<a href="#RFC7661" class="cite xref">RFC7661</a>]</span> provides an experimental specification defining how to manage a cwnd that has
-becone larger than the current flight size.
-In contrast, this present document concerns the increase in cwnd when a sender is rate is limited. These two topics are distinct,
-but are related, because both describe the managment of cwnd when the sender does not fully utilise the current cwnd.<a href="#section-1-2" class="pilcrow">¶</a></p>
+become larger than the current flight size.
+In contrast, this present document concerns the increase in cwnd when a sender is rate limited. These two topics are distinct,
+but are related, because both describe the management of cwnd when the sender does not fully utilise the current cwnd.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">This document specifies a uniform rule that congestion control mechanisms <span class="bcp14">MUST</span> apply and provides a recommendation that congestion control implementations <span class="bcp14">SHOULD</span> follow.
 An appendix provides an overview of the divergence in current RFCs and some current implementations regarding cwnd increase when the sender is rate-limited.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div id="terminology">

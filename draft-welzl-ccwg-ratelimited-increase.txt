@@ -114,12 +114,12 @@ Table of Contents
    the sender is rate-limited.
 
    Congestion Window Validation (CWV) [RFC7661] provides an experimental
-   specification defining how to manage a cwnd that has becone larger
+   specification defining how to manage a cwnd that has become larger
    than the current flight size.  In contrast, this present document
-   concerns the increase in cwnd when a sender is rate is limited.
-   These two topics are distinct, but are related, because both describe
-   the managment of cwnd when the sender does not fully utilise the
-   current cwnd.
+   concerns the increase in cwnd when a sender is rate limited.  These
+   two topics are distinct, but are related, because both describe the
+   management of cwnd when the sender does not fully utilise the current
+   cwnd.
 
    This document specifies a uniform rule that congestion control
    mechanisms MUST apply and provides a recommendation that congestion
