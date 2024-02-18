@@ -93,7 +93,9 @@ This document uses the terms defined in {{Section 2 of !RFC5681}}.
 
 # Increase rules {#rules}
 
-Irrespective of the current state of a congestion control mechanism, senders of congestion controlled transport protocols:
+When not operating in a recovery state (i.e., recovering from recent losses), a transport protocol MUST support a way to detect that it is likely to be rate-limited if it were to increase its cwnd.  One possible approach, when supporting bulk-transfer applications, would be to detect conditions in which the amount of unsent data in the transmit buffer is unlikely to allow the protocol to fully realize the corresponding FlightSize over the next RTT.  Other application sending patterns may lead to different heuristics, however.
+
+When in a rate-limited state, senders of congestion controlled transport protocols:
 
 1. MUST include a way to limit the growth of cwnd when FlightSize < cwnd.
 2. SHOULD limit the growth of cwnd when FlightSize < cwnd with inc(maxFS).
