@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-15T00:24:37.839520+00:00",
+  "timestamp": "2024-02-18T00:26:57.497864+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -88,7 +88,7 @@
       "id": "I_kwDOK4gIBc56FVux",
       "title": "Better distinguish from RFC 7661",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -97,8 +97,8 @@
       "labels": [],
       "body": "From Tom's email:\r\n\r\nIt seems to me that RFC 7661 already claims the scope of operation when the TCP is application-limited, so perhaps this has to more clearly state that this is an alternative to letting congestion window grow and then performing CWV when needed.  It also seems that the first sentence in section 4.4.2 of RFC 7661 is what this draft specifically addresses:\r\n\r\n```\r\n   TCP congestion control allows a sender to accumulate a cwnd that\r\n   would allow it to send a burst of segments with a total size up to\r\n   the difference between the FlightSize and cwnd. \r\n```\r\n\r\nHere, we are proposing that TCP congestion control not allow a sender to accumulate an unlimited cwnd, so perhaps this needs to be clarified more directly (e.g., \"one could follow RFC 7661 and other RFCs and let cwnd accumulate to large values and then later perform CWV, or one could constrain the growth of cwnd during application-limited phases, or both.  This draft proposes guidelines for bounding the growth of cwnd during application-limited intervals.\")",
       "createdAt": "2023-12-19T09:03:14Z",
-      "updatedAt": "2023-12-21T09:58:39Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-16T11:28:25Z",
+      "closedAt": "2024-02-16T11:28:25Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -113,6 +113,13 @@
           "body": "Sorry, this shouldn't have been closed, I was too eager to close things as I thought I need to create a new repo",
           "createdAt": "2023-12-21T09:58:39Z",
           "updatedAt": "2023-12-21T09:58:39Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I'm not sure what to do - right now there is an {XXX Explain the diferences... }  part in there. Could you have another stab at this to finish it off?  We could also just leave this standing as it is for now keep this update for the next rev...  @gorryfair please make an update or tell me it's ok to proceed without it. Thanks!",
+          "createdAt": "2024-02-15T11:03:04Z",
+          "updatedAt": "2024-02-15T11:03:04Z"
         }
       ]
     },
@@ -121,7 +128,7 @@
       "id": "I_kwDOK4gIBc56Or18",
       "title": "Security Consideration.",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gorryfair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -130,8 +137,8 @@
       "labels": [],
       "body": "I agree with the content of the security considerations section, but I am unsure that this is a real security issue.\r\n\r\nI think it might be wiser to move this text and assert something like: \r\n\r\nWhile congestion control issues could result in unwanted competing traffic, they do not directly result in security considerations. Transport protocols that provide authentication (including those using encryption) or that are carried over protocols that provide authentication, can protect the congestion control mechanisms from network attack.",
       "createdAt": "2023-12-20T14:34:15Z",
-      "updatedAt": "2023-12-21T09:57:44Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-16T07:47:21Z",
+      "closedAt": "2024-02-16T07:47:21Z",
       "comments": [
         {
           "author": "mwelzl",
@@ -146,6 +153,13 @@
           "body": "Sorry, I closed this as I thought I need to make a new repo. Anyway, I did address this with a push to master - @gorryfair  could you check, and close the issue if you agree with my change?",
           "createdAt": "2023-12-21T09:57:34Z",
           "updatedAt": "2023-12-21T09:57:34Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "ping :-)   this change is implemented, can we close this issue?",
+          "createdAt": "2024-02-15T10:49:07Z",
+          "updatedAt": "2024-02-15T10:49:07Z"
         }
       ]
     },
@@ -154,7 +168,7 @@
       "id": "I_kwDOK4gIBc5_EhYT",
       "title": "Fix Linux kernel text",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -163,8 +177,8 @@
       "labels": [],
       "body": "is_cwnd_limited implements what we want, just \"hard-coded\" and for slow start only, since kernel 3.16 which was published in August 2014.\r\n\r\nSee: https://elixir.bootlin.com/linux/v3.16/source/include/net/tcp.h#L985\r\n\r\nThe current text mis-represents Linux, and also talks about a weird old version number.",
       "createdAt": "2024-02-13T09:41:47Z",
-      "updatedAt": "2024-02-13T10:58:33Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-16T07:53:35Z",
+      "closedAt": "2024-02-16T07:53:35Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -187,7 +201,7 @@
       "id": "I_kwDOK4gIBc5_EiP-",
       "title": "Insert your affiliation and/or address",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -196,9 +210,61 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-02-13T09:43:34Z",
-      "updatedAt": "2024-02-13T09:43:35Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-16T10:20:13Z",
+      "closedAt": "2024-02-16T10:20:13Z",
       "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOK4gIBc5_ZCwq",
+      "title": "QUIC pacing in RFC 9002",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/12",
+      "state": "CLOSED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We currently say: A sender that paces packets (see Section 7.7) might delay sending packets and not fully utilize the congestion window due to this delay. A sender SHOULD NOT consider itself application limited if it would have fully utilized the congestion window without pacing delay.\r\n\r\n... Ah this is MUCH more complicated.\r\nI suggest there are two uses of pacing by a transport protocol:\r\n1. {Burst Mitigation}. QUIC and TCP recommend the use of pacing to avoid generating long bursts. \r\nThis adds a small fixed delay after sending a burst of 10 contiguous packets, \r\nto avoid exceeding the interface buffers of network equipment. \r\n2. {Rate-Based Pacing}.\r\nThis pacing is designed to avoid triggering \r\ncongestion by limiting the rate near that of the presumed bottleneck, as in BBR, Vegas.\r\n\r\nThe 1st doesn't really cause under use of cwnd, the latter can. Do we agree on this?\r\n",
+      "createdAt": "2024-02-15T19:26:11Z",
+      "updatedAt": "2024-02-16T11:47:50Z",
+      "closedAt": "2024-02-16T11:47:50Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I disagree with your assessment - also because the burst mitigation stuff doesn't really exist anywhere that I'd know of?\r\n\r\nI wonder where you have the 10 packets from, surely not from an RFC?   There's a fixed hardcoded 10 packet burst in Linux pacing, maybe that's what you think of?  but that's only the first 10 packets of IW (and repeating every 2^32 packets  :-D  ) and never again.\r\n\r\nI think there are three possible approaches:\r\n1) Just leave the statement there for now, knowing that this may need tweaking. I tend towards this.\r\n2) Remove it.\r\n3) Say something like [pacing to be discussed in a future version]\r\n\r\nWhat should we do?\r\n\r\nAs a side note, I think that pacing might in fact not make a difference for senders implementing our maxFs rule - because this essentially allows to increase \"as normal\" on the basis of the last RTT, and pacing happens in sub-RTT time scales...  i.e., the rule should normally make a paced sender automatically apply the rules of a \"greedy\" sender, removing the need to even say something about pacing perhaps?",
+          "createdAt": "2024-02-16T10:26:38Z",
+          "updatedAt": "2024-02-16T10:26:38Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The 10 packets is the IW in quic, and burst mitigation is the reason this was chosen, and so max burst size is linked to this. I observed that this text was never greatly precise:-).\r\n\r\nI think some quic implementations do  burst-mitigation; and some do rate-based pacing. \r\n\r\nSo the part I feel uncomfortable in our test is the citation of sect 7.7. Could we just remove that cross reference?\r\n\r\n",
+          "createdAt": "2024-02-16T11:35:53Z",
+          "updatedAt": "2024-02-16T11:35:53Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Sure!  Just\r\n```(see Section 7.7)```\r\nand leave all else as it is?",
+          "createdAt": "2024-02-16T11:40:20Z",
+          "updatedAt": "2024-02-16T11:40:20Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Curiously, \"yes - please jusr delete the bracketed text\" - because the statement is true of pacing in general:-).",
+          "createdAt": "2024-02-16T11:42:29Z",
+          "updatedAt": "2024-02-16T11:42:29Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Ah, I see, I have this there because it's a textual quote. Well, we will be forgiven for removing that section reference...",
+          "createdAt": "2024-02-16T11:47:25Z",
+          "updatedAt": "2024-02-16T11:47:25Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -284,6 +350,454 @@
               "updatedAt": "2023-12-21T09:14:59Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOK4gIBc5m9VDc",
+      "title": "Correctly represent Linux",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/7",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #5\r\n",
+      "createdAt": "2024-02-15T10:42:13Z",
+      "updatedAt": "2024-02-16T07:53:34Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "94a7f499a9c3e6e991b5d85fe25447563af37bde",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-linux",
+      "headRefOid": "4860159abcbc04082c6b4e58e6d9a266a12b40a3",
+      "closedAt": "2024-02-16T07:53:34Z",
+      "mergedAt": "2024-02-16T07:53:34Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "c270eb36f0c7366d649c468b5ace7a7e6bbac037"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I see an overlap with at least one of your PRs... would you agree that I should merge this first, and then resolve any conflicts? I think we want the Linux code description to be fixed in any case.",
+          "createdAt": "2024-02-15T22:42:34Z",
+          "updatedAt": "2024-02-15T22:42:34Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOK4gIBc5m9dLJ",
+      "title": "A small update to how we formulate our rules",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/8",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "I think this is a little clearer. Agreed?\r\n\r\nif you dislike \"in some way\", let's find a different way to say this: my point was to avoid immediately provoking the question \"yes, but HOW?\"  - or, even worse, letting people misinterpret it as \"limit means: 'STOP HERE'  \".",
+      "createdAt": "2024-02-15T10:56:25Z",
+      "updatedAt": "2024-02-16T11:31:38Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "94e573c2129972be8497ef5efa9a79747aedcffe",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-rule-formulation",
+      "headRefOid": "97ff4016cf3b80ffba394ee82f34bb3116c8780b",
+      "closedAt": "2024-02-16T11:31:38Z",
+      "mergedAt": "2024-02-16T11:31:38Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "7c9140795fc33aaf0ee36438070e98b1a4c896f1"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wWUkH",
+          "commit": {
+            "abbreviatedOid": "42ba387"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-16T11:27:44Z",
+          "updatedAt": "2024-02-16T11:27:44Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "MUST with /some way/ sounds fuzzy.\r\nI guess the nearest could be:\r\n/MUST include a way to limit.../",
+              "createdAt": "2024-02-16T11:27:44Z",
+              "updatedAt": "2024-02-16T11:27:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5wWVJQ",
+          "commit": {
+            "abbreviatedOid": "42ba387"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-16T11:29:20Z",
+          "updatedAt": "2024-02-16T11:29:20Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "I like that!  I'll try this now and merge.  We should have a first version available soon, I think - we can always fine-tune the -01 draft much more  :-)",
+              "createdAt": "2024-02-16T11:29:20Z",
+              "updatedAt": "2024-02-16T11:29:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5wWVcg",
+          "commit": {
+            "abbreviatedOid": "42ba387"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-16T11:30:09Z",
+          "updatedAt": "2024-02-16T11:30:09Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n1. MUST include a way to limit the growth of cwnd when FlightSize < cwnd.\r\n```",
+              "createdAt": "2024-02-16T11:30:09Z",
+              "updatedAt": "2024-02-16T11:30:09Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOK4gIBc5nA1GS",
+      "title": "PR to position introduction",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/9",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Might be a first shot at closing issue #2 ",
+      "createdAt": "2024-02-15T18:50:27Z",
+      "updatedAt": "2024-02-16T11:28:24Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "94e573c2129972be8497ef5efa9a79747aedcffe",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-2",
+      "headRefOid": "e9ee6470505866fd127c162eee6fbeeae2d31906",
+      "closedAt": "2024-02-16T11:28:24Z",
+      "mergedAt": "2024-02-16T11:28:24Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "7b1706275bb086db2ee35c302738ad535b6deb81"
+      },
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks for tidying up the late-night edit into actual English!",
+          "createdAt": "2024-02-16T11:26:12Z",
+          "updatedAt": "2024-02-16T11:26:12Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wUzho",
+          "commit": {
+            "abbreviatedOid": "171246a"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks, looks good, just a few nits",
+          "createdAt": "2024-02-16T07:55:39Z",
+          "updatedAt": "2024-02-16T10:15:29Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nIt could also occur because the receiver has limited the flow control\r\n```\r\n\r\nNo semantic reason, just trying to avoid \"it is limited because it has limited\"",
+              "createdAt": "2024-02-16T07:55:39Z",
+              "updatedAt": "2024-02-16T10:15:29Z"
+            },
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\n(e.g., by the advertised TCP receiver window (rwnd) or by the connection or stream flow credit in quic).\r\n```",
+              "createdAt": "2024-02-16T10:13:59Z",
+              "updatedAt": "2024-02-16T10:15:29Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nbut are related, because both describe the management of cwnd when the sender does not fully utilise the current cwnd.\r\n```",
+              "createdAt": "2024-02-16T10:14:59Z",
+              "updatedAt": "2024-02-16T10:15:29Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOK4gIBc5nA4o4",
+      "title": "Update abstract?",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/10",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-15T18:58:43Z",
+      "updatedAt": "2024-02-15T22:31:17Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "3a029c3640d60601525590b4eb83b3b53a7b5758",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-3",
+      "headRefOid": "c814f8679b86785ade8cbc43bce0933082f7c673",
+      "closedAt": "2024-02-15T22:31:16Z",
+      "mergedAt": "2024-02-15T22:31:16Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "7ddafe71791e59568d36f007165dd2326686b482"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wS5Px",
+          "commit": {
+            "abbreviatedOid": "c814f86"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-15T22:31:11Z",
+          "updatedAt": "2024-02-15T22:31:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOK4gIBc5nA58B",
+      "title": "PR with sec considerations",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/11",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [],
+      "body": "Closes issue #8 ",
+      "createdAt": "2024-02-15T19:02:26Z",
+      "updatedAt": "2024-02-16T07:47:20Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "3a029c3640d60601525590b4eb83b3b53a7b5758",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-4",
+      "headRefOid": "d2c545ca39df43359e874e34eb64bd96f3ec4649",
+      "closedAt": "2024-02-16T07:47:20Z",
+      "mergedAt": "2024-02-16T07:47:20Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "13ea16e5afaba7f268aa42ac3f1665a9320a7460"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wS7HN",
+          "commit": {
+            "abbreviatedOid": "d5f84ed"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "A suggestion, please feel free to reject it if I'm wrong... either way this is ok for me to merge afterwards!",
+          "createdAt": "2024-02-15T22:37:47Z",
+          "updatedAt": "2024-02-15T22:38:36Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nTransport protocols that provide authentication (including those using encryption) or that are carried over protocols which provide authentication,\r\n```\r\n\r\nFrom what I once learned, \"which\" is right when the clause after it supplies extra information (rather than limiting a set). So... wouldn't it be ok here?  and this would avoid the triple use of \"that\".",
+              "createdAt": "2024-02-15T22:37:47Z",
+              "updatedAt": "2024-02-15T22:38:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5wT6jL",
+          "commit": {
+            "abbreviatedOid": "d5f84ed"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-16T03:52:03Z",
+          "updatedAt": "2024-02-16T03:52:03Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I see, let's try and get this untangled, I'll rewrite.",
+              "createdAt": "2024-02-16T03:52:03Z",
+              "updatedAt": "2024-02-16T03:52:03Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOK4gIBc5nBODw",
+      "title": "Some editorial tweaks?",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/13",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-15T19:49:54Z",
+      "updatedAt": "2024-02-16T03:50:07Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "ee0ee23ebdcb5600a7097a133896ac7f8ca68ab2",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-5",
+      "headRefOid": "afcbe723dcc9c15c0838e38c19cfb3e3b04e2043",
+      "closedAt": "2024-02-16T03:50:07Z",
+      "mergedAt": "2024-02-16T03:50:07Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "c7fa292bdb4e102b7a90c5037a778dde6f6ab055"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wS78w",
+          "commit": {
+            "abbreviatedOid": "afcbe72"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-15T22:40:54Z",
+          "updatedAt": "2024-02-15T22:40:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOK4gIBc5nBZR3",
+      "title": "Add author details",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/14",
+      "state": "MERGED",
+      "author": "tomhenderson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-15T20:16:57Z",
+      "updatedAt": "2024-02-15T22:30:23Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "ee0ee23ebdcb5600a7097a133896ac7f8ca68ab2",
+      "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
+      "headRefName": "add-author",
+      "headRefOid": "02b4d5e557d09e4d62c7ab42274af3e9d6f1745e",
+      "closedAt": "2024-02-15T22:30:23Z",
+      "mergedAt": "2024-02-15T22:30:23Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "4a42cc54b334c6bd1b650d523179a854a69c5e9e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wS4_1",
+          "commit": {
+            "abbreviatedOid": "02b4d5e"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-15T22:30:18Z",
+          "updatedAt": "2024-02-15T22:30:18Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOK4gIBc5nBaEa",
+      "title": "Suggested editorial improvements",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/15",
+      "state": "MERGED",
+      "author": "tomhenderson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-15T20:18:20Z",
+      "updatedAt": "2024-02-16T07:50:14Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "13ea16e5afaba7f268aa42ac3f1665a9320a7460",
+      "headRepository": "tomhenderson/draft-ccwg-ratelimited-increase",
+      "headRefName": "editorial",
+      "headRefOid": "a986f0b3104fe74aee929c36d03ed7e290288e59",
+      "closedAt": "2024-02-16T07:50:14Z",
+      "mergedAt": "2024-02-16T07:50:14Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "94a7f499a9c3e6e991b5d85fe25447563af37bde"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wT7CO",
+          "commit": {
+            "abbreviatedOid": "ec846ba"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Seems like good text",
+          "createdAt": "2024-02-16T03:55:28Z",
+          "updatedAt": "2024-02-16T03:55:28Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5wUvwx",
+          "commit": {
+            "abbreviatedOid": "ec846ba"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-16T07:48:11Z",
+          "updatedAt": "2024-02-16T07:48:11Z",
+          "comments": []
         }
       ]
     }
