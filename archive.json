@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-18T00:26:57.497864+00:00",
+  "timestamp": "2024-02-20T00:24:22.560799+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -797,6 +797,68 @@
           "body": "",
           "createdAt": "2024-02-16T07:48:11Z",
           "updatedAt": "2024-02-16T07:48:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOK4gIBc5nNtb5",
+      "title": "Tom's suggested wording for the rules",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/16",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "To better allow for pacing. One change: I removed \"or ECN marking\" because I didn't think an ECN mark puts TCP into a \"recovery state\"?  and indeed, why would our rules not apply immediately after getting an ECN mark?  E.g., thinking of Prague, this doesn't necessarily mean a huge backoff.",
+      "createdAt": "2024-02-18T12:05:20Z",
+      "updatedAt": "2024-02-19T14:53:17Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "d4e02d6d608393572e1518acb9ae51078cd99c51",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-tom-allow-pacing",
+      "headRefOid": "669d615ab36adfcfa9a5f6eb91a1807e4454ed48",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I see. I'm ok with not doing this update - e.g., there's also the possibility that we get an ok from the community to define the other MUST that Tom has sketched as a possibility:\r\n\"MUST not exceed 2*maxFS\"   (I think, really, we'd want: \"MUST not exceed cwnd + inc(maxFS)\" - i.e., make the second rule a MUST and remove the first one).\r\n\r\nSince this allows to increase more than some other protocol specs state and some implementations might do, it's perhaps ok with MUST as a limit for this. Anyway, for now, I agree to close this PR and just see what happens.",
+          "createdAt": "2024-02-19T12:37:46Z",
+          "updatedAt": "2024-02-19T12:37:46Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fine to add something? but we'd need to converge - or can we capture this as a comment in the source - I think something along these lines is going to work out as what we need.",
+          "createdAt": "2024-02-19T13:27:45Z",
+          "updatedAt": "2024-02-19T13:27:45Z"
+        },
+        {
+          "author": "tomhenderson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Fine to add something? but we'd need to converge - or can we capture this as a comment in the source - I think something along these lines is going to work out as what we need.\r\n\r\nI am fine with postponing this in order to meet the deadline.",
+          "createdAt": "2024-02-19T14:53:16Z",
+          "updatedAt": "2024-02-19T14:53:16Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5wjEIt",
+          "commit": {
+            "abbreviatedOid": "669d615"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This is an imprecise MUST implement statement, which is never so great. I think that would need to be reworded as a required response not a required to implement.\r\n\r\nI agree there is a tricky condition to pin-down, but I am not sure this helps yet, and susepct we could make progress and define this later?",
+          "createdAt": "2024-02-19T11:55:50Z",
+          "updatedAt": "2024-02-19T11:55:50Z",
           "comments": []
         }
       ]
