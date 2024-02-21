@@ -302,7 +302,7 @@ A.2.1.  Specification
 
    Section 5.8 of [RFC9438] says:
 
-      Cubic does not increase cwnd when it is limited by the sending
+      Cubic doesn't increase cwnd when it's limited by the sending
       application or rwnd.
 
 A.2.2.  Implementation
