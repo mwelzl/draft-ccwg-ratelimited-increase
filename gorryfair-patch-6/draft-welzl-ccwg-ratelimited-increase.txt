@@ -386,7 +386,7 @@ A.5.1.  Specification
 
 A.5.2.  Assessment
 
-   A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour,
+   A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour
    ought to follow the method specified in this document.  The current
    guidance relates only to !RFC2861.  The text in section 5.1 CCID2
    !RFC4341, is updated by this document to specify the management of
