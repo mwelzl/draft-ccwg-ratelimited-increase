@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-20T00:24:22.560799+00:00",
+  "timestamp": "2024-02-22T00:24:43.559041+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -859,6 +859,126 @@
           "body": "This is an imprecise MUST implement statement, which is never so great. I think that would need to be reworded as a required response not a required to implement.\r\n\r\nI agree there is a tricky condition to pin-down, but I am not sure this helps yet, and susepct we could make progress and define this later?",
           "createdAt": "2024-02-19T11:55:50Z",
           "updatedAt": "2024-02-19T11:55:50Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOK4gIBc5ngjaF",
+      "title": "Editorial improvments to 00.",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/17",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Adds DCCP\r\nUpdates QUIC\r\nAlso adds a change log",
+      "createdAt": "2024-02-21T11:11:16Z",
+      "updatedAt": "2024-02-21T11:35:24Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "d4e02d6d608393572e1518acb9ae51078cd99c51",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-6",
+      "headRefOid": "52236160d7fa8f10fbf8ac6ddceaba839a2c0113",
+      "closedAt": "2024-02-21T11:35:24Z",
+      "mergedAt": "2024-02-21T11:35:24Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "f673afc11370134f73077075f353df3454242917"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc5w0uV_",
+          "commit": {
+            "abbreviatedOid": "b2e7a24"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-21T11:14:01Z",
+          "updatedAt": "2024-02-21T11:14:01Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "This is WAY better",
+              "createdAt": "2024-02-21T11:14:01Z",
+              "updatedAt": "2024-02-21T11:14:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5w0v0h",
+          "commit": {
+            "abbreviatedOid": "b2e7a24"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Many thanks for doing this, IMO it's a great improvement!\r\nI just have a few small suggestions. Also, I think that, after merging this, RFC 4341 should probably be added to the list of \"updates\" in the document header?",
+          "createdAt": "2024-02-21T11:16:00Z",
+          "updatedAt": "2024-02-21T11:26:05Z",
+          "comments": [
+            {
+              "originalPosition": 94,
+              "body": "```suggestion\r\n>Cubic doesn't increase cwnd when it's limited by the sending application or rwnd.\r\n```\r\n\r\nI suggest to undo this because it's a literal quote. This is really how it's written in the RFC.",
+              "createdAt": "2024-02-21T11:16:00Z",
+              "updatedAt": "2024-02-21T11:26:05Z"
+            },
+            {
+              "originalPosition": 94,
+              "body": "Maybe put it under quotation marks?",
+              "createdAt": "2024-02-21T11:16:42Z",
+              "updatedAt": "2024-02-21T11:26:05Z"
+            },
+            {
+              "originalPosition": 138,
+              "body": "```suggestion\r\nThe exception for pacing in the second paragraph requires that pacing is enabled, this is specifically taken into account. Pacing could occur over various timescales, but\r\n```\r\n\r\nThis is either a nit that you overlooked, or it's just my English: it may well be correct?  I just don't know.",
+              "createdAt": "2024-02-21T11:20:29Z",
+              "updatedAt": "2024-02-21T11:26:05Z"
+            },
+            {
+              "originalPosition": 156,
+              "body": "```suggestion\r\nA DCCP Congestion Control ID (CCID) specifing TCP-like behaviour ought to follow the method specified in this document. The current guidance relates only to !RFC2861.\r\n```",
+              "createdAt": "2024-02-21T11:22:02Z",
+              "updatedAt": "2024-02-21T11:26:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5w09SO",
+          "commit": {
+            "abbreviatedOid": "b2e7a24"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-21T11:32:33Z",
+          "updatedAt": "2024-02-21T11:32:33Z",
+          "comments": [
+            {
+              "originalPosition": 138,
+              "body": ".... ~mangled ~ ... I'll untangle.",
+              "createdAt": "2024-02-21T11:32:33Z",
+              "updatedAt": "2024-02-21T11:32:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc5w0-X3",
+          "commit": {
+            "abbreviatedOid": "5223616"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-21T11:33:54Z",
+          "updatedAt": "2024-02-21T11:33:54Z",
           "comments": []
         }
       ]
