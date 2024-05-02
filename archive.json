@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-30T00:25:08.197594+00:00",
+  "timestamp": "2024-05-02T00:25:53.049039+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -263,6 +263,65 @@
           "body": "Ah, I see, I have this there because it's a textual quote. Well, we will be forgiven for removing that section reference...",
           "createdAt": "2024-02-16T11:47:25Z",
           "updatedAt": "2024-02-16T11:47:25Z"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOK4gIBc6HZzYz",
+      "title": "Scope: RFCs we update, not \"CC in general\"",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/18",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mwelzl"
+      ],
+      "labels": [],
+      "body": "[At IETF-119, concerns were raised](https://datatracker.ietf.org/meeting/119/materials/minutes-119-ccwg-01) about this document being specific to the \"cwnd\", and not applying to (primarily) rate-based controls such as BBR.\r\n\r\nThis may be due to text such as: \"senders using a congestion controlled transport protocol... (MUST / SHOULD ...)\"\r\n\r\nI think we should update the wording to narrow the scope to specifically be about the updated RFCs only.",
+      "createdAt": "2024-04-30T14:45:09Z",
+      "updatedAt": "2024-04-30T15:47:51Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Or we can update the published RFCs, and then note in a separate section that rate-based methods (such as BBR) have similar needs, and explain a little how cwnd comstrains the rate based on measured CC information. There's no RFC for BBR, so a (sub)section in this style with guidance would perhaps be more appropriate than trying to craft words around the current rev of the ID(s)?",
+          "createdAt": "2024-04-30T15:47:50Z",
+          "updatedAt": "2024-04-30T15:47:50Z"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOK4gIBc6HZ0wB",
+      "title": "Trim the list of possible RFCs to update",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/19",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "mwelzl"
+      ],
+      "labels": [],
+      "body": "... because [it prompted the comment](https://datatracker.ietf.org/meeting/119/materials/minutes-119-ccwg-01): \"We should remind ourselves that an option is to declare some specs as historic, because it doesn't have deployment. Rather than updating we may just say an RFC is historic, rather than waste effort\".",
+      "createdAt": "2024-04-30T14:47:07Z",
+      "updatedAt": "2024-05-01T16:48:32Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree we ought to trim the list!!\r\nHowever, to obsolete a spec., we'd need to discuss if the method is deployed/implemented - and that might be a hard call to identify dead work or work that needs to be obsoleted for stability. At least I'd avoid doing that work.\r\nI think we could flip this and say \"these specific specs are deployed...\" and hence continue to say how to update them in this draft. \r\nWe might then avoid to comment on the status of RFCs that *could perhaps* have been implemented somewhere, but where can't see significant momentum at present.",
+          "createdAt": "2024-04-30T15:43:53Z",
+          "updatedAt": "2024-04-30T15:43:53Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Yes, just stop mentioning them.",
+          "createdAt": "2024-05-01T16:48:30Z",
+          "updatedAt": "2024-05-01T16:48:30Z"
         }
       ]
     }
