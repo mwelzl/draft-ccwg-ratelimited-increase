@@ -201,12 +201,12 @@ Table of Contents
    explicitly calculating the sending rate over some time interval, by
    "pacing" packets (injecting pauses in between their transmission) or
    via combinations of the above (e.g., BBR combines these three methods
-   [I-D.ietf-taps-arch]).  The guiding principle behind the rules in
-   Section 3 applies to all congestion control mechanisms: in the
-   absence of a congestion indication, a sender should be allowed to
-   increase its rate from the amount of data that it has transmitted
-   during the previous RTT.  This holds irrespective of whether the
-   sender is rate-limited or not.
+   [I-D.cardwell-iccrg-bbr-congestion-control]).  The guiding principle
+   behind the rules in Section 3 applies to all congestion control
+   mechanisms: in the absence of a congestion indication, a sender
+   should be allowed to increase its rate from the amount of data that
+   it has transmitted during the previous RTT.  This holds irrespective
+   of whether the sender is rate-limited or not.
 
 3.1.2.  Pacing
 
@@ -269,13 +269,13 @@ Table of Contents
 
 6.2.  Informative References
 
-   [I-D.ietf-taps-arch]
-              Pauly, T., Trammell, B., Brunstrom, A., Fairhurst, G., and
-              C. Perkins, "Architecture and Requirements for Transport
-              Services", Work in Progress, Internet-Draft, draft-ietf-
-              taps-arch-19, 9 November 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-taps-
-              arch-19>.
+   [I-D.cardwell-iccrg-bbr-congestion-control]
+              Cardwell, N., Cheng, Y., Yeganeh, S. H., Swett, I., and V.
+              Jacobson, "BBR Congestion Control", Work in Progress,
+              Internet-Draft, draft-cardwell-iccrg-bbr-congestion-
+              control-02, 7 March 2022,
+              <https://datatracker.ietf.org/doc/html/draft-cardwell-
+              iccrg-bbr-congestion-control-02>.
 
    [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
               TCP to Support Rate-Limited Traffic", RFC 7661,
