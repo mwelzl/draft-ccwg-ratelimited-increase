@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                                                      
 Intended status: Standards Track                            G. Fairhurst
-Expires: 7 November 2024                          University of Aberdeen
-                                                              6 May 2024
+Expires: 8 November 2024                          University of Aberdeen
+                                                              7 May 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 November 2024.
+   This Internet-Draft will expire on 8 November 2024.
 
 Copyright Notice
 
@@ -194,8 +194,9 @@ Table of Contents
 
    The present document updates congestion control specifications that
    use a congestion window (cwnd) to limit the number of unacknowledged
-   packets a sender is allowed to emit.  This is only one way to
-   constrain the rate of a sender.
+   packets a sender is allowed to emit.  Use of a congestion window
+   variable to control sending rate is not the only mechanism available
+   and used in practice.
 
    Congestion control mechanisms can also constrain data transmission by
    explicitly calculating the sending rate over some time interval, by
