@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                                                      
 Intended status: Standards Track                            G. Fairhurst
-Expires: 24 August 2024                           University of Aberdeen
-                                                        21 February 2024
+Expires: 8 November 2024                          University of Aberdeen
+                                                              7 May 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 August 2024.
+   This Internet-Draft will expire on 8 November 2024.
 
 Copyright Notice
 
@@ -77,6 +77,8 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Increase rules
      3.1.  Discussion
+       3.1.1.  Rate-based congestion control
+       3.1.2.  Pacing
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -188,6 +190,35 @@ Table of Contents
    during an RTT is permitted to be increased during the immediately
    following RTT.  Thus, such an increase is allowed by the second rule.
 
+3.1.1.  Rate-based congestion control
+
+   The present document updates congestion control specifications that
+   use a congestion window (cwnd) to limit the number of unacknowledged
+   packets a sender is allowed to emit.  Use of a congestion window
+   variable to control sending rate is not the only mechanism available
+   and used in practice.
+
+   Congestion control mechanisms can also constrain data transmission by
+   explicitly calculating the sending rate over some time interval, by
+   "pacing" packets (injecting pauses in between their transmission) or
+   via combinations of the above (e.g., BBR combines these three methods
+   [I-D.cardwell-iccrg-bbr-congestion-control]).  The guiding principle
+   behind the rules in Section 3 applies to all congestion control
+   mechanisms: in the absence of a congestion indication, a sender
+   should be allowed to increase its rate from the amount of data that
+   it has transmitted during the previous RTT.  This holds irrespective
+   of whether the sender is rate-limited or not.
+
+3.1.2.  Pacing
+
+   Pacing mechanisms seek to avoid the negative impacts associated with
+   "bursts" (flights of packets transmitted back-to-back).  This is
+   usually without limiting the number of packets that are sent per RTT.
+   The present specification introduces a limitation using "maxFS",
+   which is measured over an RTT; thus, as long as the number of packets
+   per RTT is unaffected by pacing, the rules in Section 3 also do not
+   constrain the use of pacing mechanisms.
+
 4.  Security Considerations
 
    While congestion control designs could result in unwanted competing
@@ -238,6 +269,14 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc9438>.
 
 6.2.  Informative References
+
+   [I-D.cardwell-iccrg-bbr-congestion-control]
+              Cardwell, N., Cheng, Y., Yeganeh, S. H., Swett, I., and V.
+              Jacobson, "BBR Congestion Control", Work in Progress,
+              Internet-Draft, draft-cardwell-iccrg-bbr-congestion-
+              control-02, 7 March 2022,
+              <https://datatracker.ietf.org/doc/html/draft-cardwell-
+              iccrg-bbr-congestion-control-02>.
 
    [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
               TCP to Support Rate-Limited Traffic", RFC 7661,

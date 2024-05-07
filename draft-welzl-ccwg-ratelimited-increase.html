@@ -12,17 +12,17 @@
        This document specifies how transport protocols increase their congestion window when the sender is rate-limited.
 Such a limitation can be caused by the sending application not supplying data or by receiver flow control. 
     " name="description">
-<meta content="xml2rfc 3.19.4" name="generator">
+<meta content="xml2rfc 3.21.0" name="generator">
 <meta content="draft-welzl-ccwg-ratelimited-increase-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.4
-    Python 3.11.6
+  xml2rfc 3.21.0
+    Python 3.11.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.2.0
+    platformdirs 4.2.1
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.31.0
@@ -1027,11 +1027,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Constrained cwnd Increase</td>
-<td class="right">February 2024</td>
+<td class="right">May 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Welzl, et al.</td>
-<td class="center">Expires 24 August 2024</td>
+<td class="center">Expires 8 November 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfcRFC5681" class="eref">RFC5681</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9002" class="eref">RFC9002</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9260" class="eref">RFC9260</a>, <a href="https://www.rfc-editor.org/rfc/rfcRFC9438" class="eref">RFC9438</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-21" class="published">21 February 2024</time>
+<time datetime="2024-05-07" class="published">7 May 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-24">24 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-11-08">8 November 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1110,7 +1110,7 @@ Such a limitation can be caused by the sending application not supplying data or
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1155,6 +1155,14 @@ Such a limitation can be caused by the sending application not supplying data or
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-discussion" class="internal xref">Discussion</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-rate-based-congestion-contr" class="internal xref">Rate-based congestion control</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-pacing" class="internal xref">Pacing</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1332,6 +1340,23 @@ If cwnd has never been decreased, maxFS is the maximum value of FlightSize since
 Such unlimited growth in the cwnd is therefore disallowed by the first rule.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">However, in most common congestion control mechanisms, in the absence of an indication of congestion, a cwnd that has been fully utilized during an RTT is permitted to be increased during the immediately following RTT.
 Thus, such an increase is allowed by the second rule.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<div id="rate-based-congestion-control">
+<section id="section-3.1.1">
+          <h4 id="name-rate-based-congestion-contr">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-rate-based-congestion-contr" class="section-name selfRef">Rate-based congestion control</a>
+          </h4>
+<p id="section-3.1.1-1">The present document updates congestion control specifications that use a congestion window (cwnd) to limit the number of unacknowledged packets a sender is allowed to emit. Use of a congestion window variable to control sending rate is not the only mechanism available and used in practice.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-2">Congestion control mechanisms can also constrain data transmission by explicitly calculating the sending rate over some time interval, by "pacing" packets (injecting pauses in between their transmission) or via combinations of the above (e.g., BBR combines these three methods <span>[<a href="#I-D.cardwell-iccrg-bbr-congestion-control" class="cite xref">I-D.cardwell-iccrg-bbr-congestion-control</a>]</span>). The guiding principle behind the rules in <a href="#rules" class="auto internal xref">Section 3</a> applies to all  congestion control mechanisms: in the absence of a congestion indication, a sender should be allowed to increase its rate from the amount of data that it has transmitted during the previous RTT. This holds irrespective of whether the sender is rate-limited or not.<a href="#section-3.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="pacing">
+<section id="section-3.1.2">
+          <h4 id="name-pacing">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-pacing" class="section-name selfRef">Pacing</a>
+          </h4>
+<p id="section-3.1.2-1">Pacing mechanisms seek to avoid the negative impacts associated with "bursts" (flights of packets transmitted back-to-back). This is usually without limiting the number of packets that are sent per RTT. The present specification introduces a limitation using "maxFS", which is measured over an RTT; thus, as long as the number of packets per RTT is unaffected by pacing, the rules in <a href="#rules" class="auto internal xref">Section 3</a> also do not constrain the use of pacing mechanisms.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1401,6 +1426,10 @@ can protect their congestion control mechanisms from network attack. This is ort
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.cardwell-iccrg-bbr-congestion-control">[I-D.cardwell-iccrg-bbr-congestion-control]</dt>
+        <dd>
+<span class="refAuthor">Cardwell, N.</span>, <span class="refAuthor">Cheng, Y.</span>, <span class="refAuthor">Yeganeh, S. H.</span>, <span class="refAuthor">Swett, I.</span>, and <span class="refAuthor">V. Jacobson</span>, <span class="refTitle">"BBR Congestion Control"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-cardwell-iccrg-bbr-congestion-control-02</span>, <time datetime="2022-03-07" class="refDate">7 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-cardwell-iccrg-bbr-congestion-control-02">https://datatracker.ietf.org/doc/html/draft-cardwell-iccrg-bbr-congestion-control-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7661">[RFC7661]</dt>
       <dd>
 <span class="refAuthor">Fairhurst, G.</span>, <span class="refAuthor">Sathiaseelan, A.</span>, and <span class="refAuthor">R. Secchi</span>, <span class="refTitle">"Updating TCP to Support Rate-Limited Traffic"</span>, <span class="seriesInfo">RFC 7661</span>, <span class="seriesInfo">DOI 10.17487/RFC7661</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7661">https://www.rfc-editor.org/rfc/rfc7661</a>&gt;</span>. </dd>
