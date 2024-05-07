@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-05T00:28:15.924861+00:00",
+  "timestamp": "2024-05-07T00:26:04.994845+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -280,7 +280,7 @@
       "labels": [],
       "body": "[At IETF-119, concerns were raised](https://datatracker.ietf.org/meeting/119/materials/minutes-119-ccwg-01) about this document being specific to the \"cwnd\", and not applying to (primarily) rate-based controls such as BBR.\r\n\r\nThis may be due to text such as: \"senders using a congestion controlled transport protocol... (MUST / SHOULD ...)\"\r\n\r\nI think we should update the wording to narrow the scope to specifically be about the updated RFCs only.",
       "createdAt": "2024-04-30T14:45:09Z",
-      "updatedAt": "2024-04-30T15:47:51Z",
+      "updatedAt": "2024-05-06T10:13:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -289,6 +289,13 @@
           "body": "Or we can update the published RFCs, and then note in a separate section that rate-based methods (such as BBR) have similar needs, and explain a little how cwnd comstrains the rate based on measured CC information. There's no RFC for BBR, so a (sub)section in this style with guidance would perhaps be more appropriate than trying to craft words around the current rev of the ID(s)?",
           "createdAt": "2024-04-30T15:47:50Z",
           "updatedAt": "2024-04-30T15:47:50Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "We can combine this with clarifications around pacing.",
+          "createdAt": "2024-05-06T10:13:20Z",
+          "updatedAt": "2024-05-06T10:13:20Z"
         }
       ]
     },
@@ -872,7 +879,7 @@
       "labels": [],
       "body": "To better allow for pacing. One change: I removed \"or ECN marking\" because I didn't think an ECN mark puts TCP into a \"recovery state\"?  and indeed, why would our rules not apply immediately after getting an ECN mark?  E.g., thinking of Prague, this doesn't necessarily mean a huge backoff.",
       "createdAt": "2024-02-18T12:05:20Z",
-      "updatedAt": "2024-02-19T14:53:17Z",
+      "updatedAt": "2024-05-06T12:18:36Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "d4e02d6d608393572e1518acb9ae51078cd99c51",
@@ -904,6 +911,13 @@
           "body": "> Fine to add something? but we'd need to converge - or can we capture this as a comment in the source - I think something along these lines is going to work out as what we need.\r\n\r\nI am fine with postponing this in order to meet the deadline.",
           "createdAt": "2024-02-19T14:53:16Z",
           "updatedAt": "2024-02-19T14:53:16Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "I suggest to close this PR because we don't need it: pacing should work with the rules as they are. If I'm not mistaken, they allow for anything below a full RTT of ACK ignorance (I mean: not increasing cwnd when ACKs arrive), followed by immediately increasing cwnd as the congestion control rules allow (e.g., +1 in Reno CA or *2 in slow start). Pacing should never take breaks as long as that - it's always at sub-RTT time scales (and: why would we want to allow even larger time scales?).\r\n\r\nMy suggestion would be to make this clearer in text instead.",
+          "createdAt": "2024-05-06T10:11:01Z",
+          "updatedAt": "2024-05-06T12:18:36Z"
         }
       ],
       "reviews": [
@@ -1039,6 +1053,113 @@
           "createdAt": "2024-02-21T11:33:54Z",
           "updatedAt": "2024-02-21T11:33:54Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOK4gIBc5unpg6",
+      "title": "Remove \"other transports\" + some format cleaning",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/20",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #19",
+      "createdAt": "2024-05-06T10:27:40Z",
+      "updatedAt": "2024-05-06T16:43:18Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "f673afc11370134f73077075f353df3454242917",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-remove-some-transports",
+      "headRefOid": "7c0dca3efaa00be2690ccda56a8a57be13c6f1f7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc55qo-A",
+          "commit": {
+            "abbreviatedOid": "7c0dca3"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-06T16:43:18Z",
+          "updatedAt": "2024-05-06T16:43:18Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "/quite large/arbitrarily large/ ?\r\n/application limited/rate-limited/ as per RFC 7661 ?\r\n/low rate/rate lower than permitted by the cwnd/\r\n/RFC2861/RFC7661/\r\n/not be/is not/\r\n/application limited/rate-limited/ as per RFC 7661 ?\r\n/the congestion window is not being fully utilized./the sender if not fully utilising the congestion window./\r\n\r\n\r\n",
+              "createdAt": "2024-05-06T16:43:18Z",
+              "updatedAt": "2024-05-06T16:43:18Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOK4gIBc5uoOxp",
+      "title": "Discussion of rate-based control and pacing",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/21",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #18 ",
+      "createdAt": "2024-05-06T12:01:58Z",
+      "updatedAt": "2024-05-06T21:25:11Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "f673afc11370134f73077075f353df3454242917",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-discuss-ratebased-and-pacing",
+      "headRefOid": "dd19e1b1bc381990e82066070360a40815dfb9b5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc55qnH1",
+          "commit": {
+            "abbreviatedOid": "dd19e1b"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-06T16:38:49Z",
+          "updatedAt": "2024-05-06T16:38:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOK4gIBc55sfAf",
+          "commit": {
+            "abbreviatedOid": "dd19e1b"
+          },
+          "author": "tomhenderson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-06T21:25:10Z",
+          "updatedAt": "2024-05-06T21:25:11Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Rather than say 'This is only one way to constrain the rate of the sender`, I suggest `Use of a congestion window variable to control sending rate is not the only mechanism available and used in practice.'\r\n\r\nTo me, it is clearer to avoid the ambiguous 'This' in the current sentence.",
+              "createdAt": "2024-05-06T21:25:11Z",
+              "updatedAt": "2024-05-06T21:25:11Z"
+            }
+          ]
         }
       ]
     }
