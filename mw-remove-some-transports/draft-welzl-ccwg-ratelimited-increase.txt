@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                                                      
 Intended status: Standards Track                            G. Fairhurst
-Expires: 7 November 2024                          University of Aberdeen
-                                                              6 May 2024
+Expires: 9 November 2024                          University of Aberdeen
+                                                              8 May 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 November 2024.
+   This Internet-Draft will expire on 9 November 2024.
 
 Copyright Notice
 
@@ -210,10 +210,6 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
-              Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
-              2000, <https://www.rfc-editor.org/rfc/rfc2861>.
-
    [RFC4341]  Floyd, S. and E. Kohler, "Profile for Datagram Congestion
               Control Protocol (DCCP) Congestion Control ID 2: TCP-like
               Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
@@ -222,6 +218,11 @@ Table of Contents
    [RFC5681]  Allman, M., Paxson, V., and E. Blanton, "TCP Congestion
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
               <https://www.rfc-editor.org/rfc/rfc5681>.
+
+   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
+              TCP to Support Rate-Limited Traffic", RFC 7661,
+              DOI 10.17487/RFC7661, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7661>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -242,10 +243,9 @@ Table of Contents
 
 6.2.  Informative References
 
-   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
-              TCP to Support Rate-Limited Traffic", RFC 7661,
-              DOI 10.17487/RFC7661, October 2015,
-              <https://www.rfc-editor.org/rfc/rfc7661>.
+   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
+              Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
+              2000, <https://www.rfc-editor.org/rfc/rfc2861>.
 
 Appendix A.  The state of RFCs and implementations
 
@@ -390,10 +390,10 @@ A.5.1.  Specification
 A.5.2.  Assessment
 
    A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour
-   ought to follow the method specified in this document.  The current
-   guidance relates only to [RFC2861].  The text in Section 5.1 of
-   [RFC4341] is updated by this document to specify the management of
-   the cwnd during an application-limited period.
+   ought to follow the method specified in [RFC4341].  This guidance
+   related to [RFC2861], replaced by [RFC7661].  The text in Section 5.1
+   of [RFC4341] is updated by this document to specify the management of
+   the cwnd during a rate-limited period.
 
 Appendix B.  Change Log
 
