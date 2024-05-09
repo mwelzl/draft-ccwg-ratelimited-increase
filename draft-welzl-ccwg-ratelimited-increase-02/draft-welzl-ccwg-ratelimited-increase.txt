@@ -1,0 +1,494 @@
+
+
+
+
+Congestion Control Working Group                                M. Welzl
+Internet-Draft                                        University of Oslo
+Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
+         approved)                              University of Washington
+Intended status: Standards Track                            G. Fairhurst
+Expires: 10 November 2024                         University of Aberdeen
+                                                              9 May 2024
+
+
+   Increase of the Congestion Window when the Sender Is Rate-Limited
+              draft-welzl-ccwg-ratelimited-increase-latest
+
+Abstract
+
+   This document specifies how transport protocols increase their
+   congestion window when the sender is rate-limited, and updates RFC
+   5681, RFC 9002, RFC 9260, and RFC 9438.  Such a limitation can be
+   caused by the sending application not supplying data or by receiver
+   flow control.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-
+   ccwg-constrained-increase.html.  Status information for this document
+   may be found at https://datatracker.ietf.org/doc/draft-welzl-ccwg-
+   ratelimited-increase/.
+
+   Discussion of this document takes place on the Congestion Control
+   Working Group Working Group mailing list (mailto:ccwg@ietf.org),
+   which is archived at https://mailarchive.ietf.org/arch/browse/ccwg/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/ccwg/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/mwelzl/draft-ccwg-constrained-increase.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 10 November 2024.
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+     1.1.  Terminology
+   2.  Conventions and Definitions
+   3.  Increase rules
+     3.1.  Discussion
+       3.1.1.  Rate-based congestion control
+       3.1.2.  Pacing
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Appendix A.  The state of RFCs and implementations
+     A.1.  TCP ("Reno" congestion control)
+       A.1.1.  Specification
+       A.1.2.  Implementation
+       A.1.3.  Assessment
+     A.2.  CUBIC
+       A.2.1.  Specification
+       A.2.2.  Implementation
+       A.2.3.  Assessment
+     A.3.  SCTP
+       A.3.1.  Specification
+       A.3.2.  Assessment
+     A.4.  QUIC
+       A.4.1.  Specification
+       A.4.2.  Assessment
+     A.5.  DCCP CCID2
+       A.5.1.  Specification
+       A.5.2.  Assessment
+   Appendix B.  Change Log
+   Authors' Addresses
+
+1.  Introduction
+
+   A sender of a congestion controlled transport protocol becomes "rate-
+   limited" when it does not send any data even though the congestion
+   control rules would allow it to transmit data.  This could occur
+   because the application has not provided sufficient data to fully
+   utilise the congestion window (cwnd).  It could also occur because
+   the receiver has limited the sender using flow control (e.g., by the
+   advertised TCP receiver window (rwnd) or by the conection or stream
+   flow credit in quic).  Current RFCs specifying congestion control
+   algorithms diverge regarding the rules for increasing the cwnd when
+   the sender is rate-limited.
+
+   Congestion Window Validation (CWV) [RFC7661] provides an experimental
+   specification defining how to manage a cwnd that has become larger
+   than the current flight size.  In contrast, this present document
+   concerns the increase in cwnd when a sender is rate-limited.  These
+   two topics are distinct, but are related, because both describe the
+   management of the cwnd when the sender does not fully utilise the
+   current cwnd.
+
+   This document specifies a uniform rule that congestion control
+   algorithms MUST apply and provides a recommendation that congestion
+   control implementations SHOULD follow.  An appendix provides an
+   overview of the divergence in current RFCs and some current
+   implementations regarding cwnd increase when the sender is rate-
+   limited.
+
+1.1.  Terminology
+
+   This document uses the terms defined in Section 2 of [RFC5681].
+   Additionally, we define:
+
+   *  maxFS: the largest value of FlightSize since the last time that
+      cwnd was decreased.  If cwnd has never been decreased, maxFS is
+      the maximum value of FlightSize since the start of the data
+      transfer.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Increase rules
+
+   Irrespective of the current state of a congestion control algorithm,
+   senders using a congestion controlled transport protocol:
+
+   1.  MUST include a limit to the growth of cwnd when FlightSize <
+       cwnd.
+
+   2.  SHOULD limit the growth of cwnd when FlightSize < cwnd with
+       inc(maxFS).
+
+   In rule #2, "inc" is a function that returns the maximum
+   unconstrained increase that would result from the congestion control
+   algorithm within one RTT, based on the "maxFS" parameter.  For
+   example, for Slow Start, as specified in [RFC5681],
+   inc(maxFS)=2*maxFS, such that equation 2 in [RFC5681] becomes:
+
+   cwnd_new = cwnd + min (N, SMSS)
+   cwnd = min(cwnd_new, 2*maxFS)
+
+   Similarly, with rule #2 applied to Congestion Avoidance,
+   inc(maxFS)=1+maxFS, such that equation 3 in [RFC5681] becomes:
+
+   cwnd_new = cwnd + SMSS*SMSS/cwnd
+   cwnd = min(cwnd_new, 1+maxFS)
+
+   maxFS is the largest value of FlightSize since the last time that
+   cwnd was decreased.  If cwnd has never been decreased, maxFS is the
+   maximum value of FlightSize since the start of the data transfer.
+
+3.1.  Discussion
+
+   If the sending rate is less than permitted by cwnd for multiple RTTs,
+   limited either by the sending application or by the receiver-
+   advertised window, continuously increasing the cwnd would cause a
+   mismatch between the cwnd and the capacity that the path supports
+   (i.e., over-estimating the capacity).  Such unlimited growth in the
+   cwnd is therefore disallowed by the first rule.
+
+   However, in most common congestion control algorithms, in the absence
+   of an indication of congestion, a cwnd that has been fully utilized
+   during an RTT is permitted to be increased during the immediately
+   following RTT.  Thus, such an increase is allowed by the second rule.
+
+3.1.1.  Rate-based congestion control
+
+   The present document updates congestion control specifications that
+   use a congestion window (cwnd) to limit the number of unacknowledged
+   packets a sender is allowed to emit.  Use of a congestion window
+   variable to control sending rate is not the only mechanism available
+   and used in practice.
+
+   Congestion control algorithms can also constrain data transmission by
+   explicitly calculating the sending rate over some time interval, by
+   "pacing" packets (injecting pauses in between their transmission) or
+   via combinations of the above (e.g., BBR combines these three methods
+   [I-D.cardwell-iccrg-bbr-congestion-control]).  The guiding principle
+   behind the rules in Section 3 applies to all congestion control
+   algorithms: in the absence of a congestion indication, a sender
+   should be allowed to increase its rate from the amount of data that
+   it has transmitted during the previous RTT.  This holds irrespective
+   of whether the sender is rate-limited or not.
+
+3.1.2.  Pacing
+
+   Pacing mechanisms seek to avoid the negative impacts associated with
+   "bursts" (flights of packets transmitted back-to-back).  This is
+   usually without limiting the number of packets that are sent per RTT.
+   The present specification introduces a limitation using "maxFS",
+   which is measured over an RTT; thus, as long as the number of packets
+   per RTT is unaffected by pacing, the rules in Section 3 also do not
+   constrain the use of pacing mechanisms.
+
+4.  Security Considerations
+
+   While congestion control designs could result in unwanted competing
+   traffic, they do not directly result in new security considerations.
+
+   Transport protocols that provide authentication (including those
+   using encryption), or are carried over protocols that provide
+   authentication, can protect their congestion control algorithm from
+   network attack.  This is orthogonal to the congestion control rules.
+
+5.  IANA Considerations
+
+   This document requests no IANA action.
+
+6.  References
+
+6.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC2861]  Handley, M., Padhye, J., and S. Floyd, "TCP Congestion
+              Window Validation", RFC 2861, DOI 10.17487/RFC2861, June
+              2000, <https://www.rfc-editor.org/rfc/rfc2861>.
+
+   [RFC4341]  Floyd, S. and E. Kohler, "Profile for Datagram Congestion
+              Control Protocol (DCCP) Congestion Control ID 2: TCP-like
+              Congestion Control", RFC 4341, DOI 10.17487/RFC4341, March
+              2006, <https://www.rfc-editor.org/rfc/rfc4341>.
+
+   [RFC5681]  Allman, M., Paxson, V., and E. Blanton, "TCP Congestion
+              Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
+              <https://www.rfc-editor.org/rfc/rfc5681>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC9002]  Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
+              and Congestion Control", RFC 9002, DOI 10.17487/RFC9002,
+              May 2021, <https://www.rfc-editor.org/rfc/rfc9002>.
+
+   [RFC9260]  Stewart, R., Tüxen, M., and K. Nielsen, "Stream Control
+              Transmission Protocol", RFC 9260, DOI 10.17487/RFC9260,
+              June 2022, <https://www.rfc-editor.org/rfc/rfc9260>.
+
+   [RFC9438]  Xu, L., Ha, S., Rhee, I., Goel, V., and L. Eggert, Ed.,
+              "CUBIC for Fast and Long-Distance Networks", RFC 9438,
+              DOI 10.17487/RFC9438, August 2023,
+              <https://www.rfc-editor.org/rfc/rfc9438>.
+
+6.2.  Informative References
+
+   [I-D.cardwell-iccrg-bbr-congestion-control]
+              Cardwell, N., Cheng, Y., Yeganeh, S. H., Swett, I., and V.
+              Jacobson, "BBR Congestion Control", Work in Progress,
+              Internet-Draft, draft-cardwell-iccrg-bbr-congestion-
+              control-02, 7 March 2022,
+              <https://datatracker.ietf.org/doc/html/draft-cardwell-
+              iccrg-bbr-congestion-control-02>.
+
+   [RFC7661]  Fairhurst, G., Sathiaseelan, A., and R. Secchi, "Updating
+              TCP to Support Rate-Limited Traffic", RFC 7661,
+              DOI 10.17487/RFC7661, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7661>.
+
+Appendix A.  The state of RFCs and implementations
+
+   This section is provided as input for IETF discussion, and should be
+   removed before publication.
+
+A.1.  TCP ("Reno" congestion control)
+
+A.1.1.  Specification
+
+   [RFC5681] does not contain a rule to limit the growth of cwnd when
+   the sender is rate-limited.  This statement (page 8) gives an
+   impression that such cwnd growth might be expected:
+
+      Implementation Note: An easy mistake to make is to simply use
+      cwnd, rather than FlightSize, which in some implementations may
+      incidentally increase well beyond rwnd.
+
+   [RFC7661] also suggests there is no increase limitation in the
+   standard TCP behavior (which [RFC7661] changes), on page 4:
+
+      Standard TCP does not impose additional restrictions on the growth
+      of the congestion window when a TCP sender is unable to send at
+      the maximum rate allowed by the cwnd.  In this case, the rate-
+      limited sender may grow a cwnd far beyond that corresponding to
+      the current transmit rate, resulting in a value that does not
+      reflect current information about the state of the network path
+      the flow is using.
+
+A.1.2.  Implementation
+
+   *  ns-2 allows cwnd to grow when it is rate-limited by rwnd.  (Rate-
+      limited by the sending application: not tested.)
+
+   *  ns-3 allows cwnd to grow when it is rate-limited by either an
+      application or the rwnd.
+
+   *  In Congestion Avoidance, Linux only allows the cwnd to grow when
+      the sender is unconstrained.  Before kernel version 3.16, this
+      also applied to Slow Start.  The check for "unconstrained" is
+      perfomed by checking if FlightSize is greater or equal to cwnd.
+      Since kernel version 3.16, which was published in August 2014, in
+      Slow Start, the increase implements rule #2 in Section 3 in the
+      tcp_is_cwnd_limited function in tcp.h.
+
+A.1.3.  Assessment
+
+   Linux implements a limit to cwnd growth in accordance with rule #1 in
+   Section 3; in Slow Start, this limit follows rule #2, while in
+   Congestion Avoidance, it is more conservative than rule #2.  The
+   specification and the ns-2 and ns-3 implementations are in conflict
+   with rules #1 and #2 in Section 3.
+
+A.2.  CUBIC
+
+A.2.1.  Specification
+
+   Section 5.8 of [RFC9438] says:
+
+      Cubic doesn't increase cwnd when it's limited by the sending
+      application or rwnd.
+
+A.2.2.  Implementation
+
+   The description of Linux described in Appendix A.1.2 also applies to
+   Cubic.
+
+A.2.3.  Assessment
+
+   Both the specification and the Linux implementation limit the cwnd
+   growth in accordance with rule #1 in Section 3; in Congestion
+   Avoidance, this limit is more conservative than rule #2 in Section 3,
+   and in Slow Start, it implements rule #2 in Section 3.
+
+A.3.  SCTP
+
+A.3.1.  Specification
+
+   Section 7.2.1 of [RFC9260] says:
+
+      When cwnd is less than or equal to ssthresh, an SCTP endpoint MUST
+      use the slow-start algorithm to increase cwnd only if the current
+      congestion window is being fully utilized and the data sender is
+      not in Fast Recovery.  Only when these two conditions are met can
+      the cwnd be increased; otherwise, the cwnd MUST NOT be increased.
+
+A.3.2.  Assessment
+
+   The quoted statement from [RFC9260] prescribes the same cwnd growth
+   limitation that is also specified for Cubic and implemented for both
+   Reno and Cubic in Linux.  It is in accordance with rule #1 in
+   Section 3, and more conservative than rule #2 in Section 3.
+
+   Section 7.2.1 of [RFC9260] is specifically limited to Slow Start.
+   Congestion Avoidance is discussed in Section 7.2.2 of [RFC9260]
+   However, this section neither contains a similar rule, nor does it
+   refer back to the rule that limits the growth of cwnd in
+   Section 7.2.1.  It is thus implicitly clear that the quoted rule only
+   applies to Slow Start, whereas the rules in Section 3 apply to both
+   Slow Start and Congestion Avoidance.
+
+A.4.  QUIC
+
+A.4.1.  Specification
+
+   Section 7.8 of [RFC9002] states:
+
+      When bytes in flight is smaller than the congestion window and
+      sending is not pacing limited, the congestion window is
+      underutilized.  This can happen due to insufficient application
+      data or flow control limits.  When this occurs, the congestion
+      window SHOULD NOT be increased in either slow start or congestion
+      avoidance.
+
+      A sender that paces packets might delay sending packets and not
+      fully utilize the congestion window due to this delay.  A sender
+      SHOULD NOT consider itself application limited if it would have
+      fully utilized the congestion window without pacing delay.
+
+A.4.2.  Assessment
+
+   With the exception of pacing, this specification conservatively
+   limits the growth in cwnd, similar to Cubic and SCTP.  The exception
+   for pacing in the second paragraph requires that when pacing is
+   enabled, it is specifically taken into account.  Pacing could occur
+   over various timescales, but is typically done with delays below an
+   RTT; thus, rule #2 in Section 3 should cover this case.
+
+A.5.  DCCP CCID2
+
+A.5.1.  Specification
+
+   Section 5.1 of [RFC4341] states: >There are currently no standards
+   governing TCP's use of the congestion window during an application-
+   limited period.  In particular, it is possible for TCP's congestion
+   window to grow quite large during a long uncongested period when the
+   sender is application limited, sending at a low rate.  [RFC2861]
+   essentially suggests that TCP's congestion window not be increased
+   during application-limited periods when the congestion window is not
+   being fully utilized.
+
+A.5.2.  Assessment
+
+   A DCCP Congestion Control ID (CCID) specifing TCP-like behaviour
+   ought to follow the method specified in this document.  The current
+   guidance relates only to [RFC2861].  The text in Section 5.1 of
+   [RFC4341] is updated by this document to specify the management of
+   the cwnd during an application-limited period.
+
+Appendix B.  Change Log
+
+   *  -00 was the first individual submission for feedback by CCWG.
+
+   *  -01 includes editorial improvements
+
+      -  Removes application interaction with QUIC pacing, since pacing
+         might be within the QUIC stack.
+
+      -  Adds explicit mention of DCCP/CCID2.
+
+      -  Adds this change log.
+
+   *  -02 addresses comments from IETF-119
+
+      -  Discusses rate-based controls and pacing.
+
+      -  Trims the list of possible RFCs to update.
+
+      -  Some editorial fixes: "congestion control algorithm" instead of
+         "mechanism" for consistency with RFC5033.bis; earlier
+         definition of maxFS; explicit mention of RFCs to update in
+         abstract.
+
+Authors' Addresses
+
+   Michael Welzl
+   University of Oslo
+   PO Box 1080 Blindern
+   0316  Oslo
+   Norway
+   Email: michawe@ifi.uio.no
+   URI:   http://welzl.at/
+
+
+   Tom Henderson
+   University of Washington
+   185 Stevens Way
+   Seattle, WA 98195,
+   United States
+   Email: tomh@tomh.org
+   URI:   https://www.tomh.org/
+
+
+   Godred Fairhurst
+   University of Aberdeen
+   Fraser Noble Building
+   Aberdeen, AB24 3UE
+   United Kingdom
+   Email: gorry@erg.abdn.ac.uk
+   URI:   https://www.erg.abdn.ac.uk/
