@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-07T00:26:04.994845+00:00",
+  "timestamp": "2024-05-09T00:25:50.156421+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -271,7 +271,7 @@
       "id": "I_kwDOK4gIBc6HZzYz",
       "title": "Scope: RFCs we update, not \"CC in general\"",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/18",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -280,8 +280,8 @@
       "labels": [],
       "body": "[At IETF-119, concerns were raised](https://datatracker.ietf.org/meeting/119/materials/minutes-119-ccwg-01) about this document being specific to the \"cwnd\", and not applying to (primarily) rate-based controls such as BBR.\r\n\r\nThis may be due to text such as: \"senders using a congestion controlled transport protocol... (MUST / SHOULD ...)\"\r\n\r\nI think we should update the wording to narrow the scope to specifically be about the updated RFCs only.",
       "createdAt": "2024-04-30T14:45:09Z",
-      "updatedAt": "2024-05-06T10:13:20Z",
-      "closedAt": null,
+      "updatedAt": "2024-05-07T06:50:25Z",
+      "closedAt": "2024-05-07T06:50:25Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -304,7 +304,7 @@
       "id": "I_kwDOK4gIBc6HZ0wB",
       "title": "Trim the list of possible RFCs to update",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/19",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -313,8 +313,8 @@
       "labels": [],
       "body": "... because [it prompted the comment](https://datatracker.ietf.org/meeting/119/materials/minutes-119-ccwg-01): \"We should remind ourselves that an option is to declare some specs as historic, because it doesn't have deployment. Rather than updating we may just say an RFC is historic, rather than waste effort\".",
       "createdAt": "2024-04-30T14:47:07Z",
-      "updatedAt": "2024-05-01T16:48:32Z",
-      "closedAt": null,
+      "updatedAt": "2024-05-08T14:12:50Z",
+      "closedAt": "2024-05-08T14:12:50Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -872,21 +872,21 @@
       "id": "PR_kwDOK4gIBc5nNtb5",
       "title": "Tom's suggested wording for the rules",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/16",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "To better allow for pacing. One change: I removed \"or ECN marking\" because I didn't think an ECN mark puts TCP into a \"recovery state\"?  and indeed, why would our rules not apply immediately after getting an ECN mark?  E.g., thinking of Prague, this doesn't necessarily mean a huge backoff.",
       "createdAt": "2024-02-18T12:05:20Z",
-      "updatedAt": "2024-05-06T12:18:36Z",
+      "updatedAt": "2024-05-07T06:50:49Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "d4e02d6d608393572e1518acb9ae51078cd99c51",
       "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "headRefName": "mw-tom-allow-pacing",
       "headRefOid": "669d615ab36adfcfa9a5f6eb91a1807e4454ed48",
-      "closedAt": null,
+      "closedAt": "2024-05-07T06:50:49Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -1061,24 +1061,26 @@
       "id": "PR_kwDOK4gIBc5unpg6",
       "title": "Remove \"other transports\" + some format cleaning",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/20",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes #19",
       "createdAt": "2024-05-06T10:27:40Z",
-      "updatedAt": "2024-05-06T16:43:18Z",
+      "updatedAt": "2024-05-08T14:12:49Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "f673afc11370134f73077075f353df3454242917",
       "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "headRefName": "mw-remove-some-transports",
       "headRefOid": "7c0dca3efaa00be2690ccda56a8a57be13c6f1f7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-05-08T14:12:49Z",
+      "mergedAt": "2024-05-08T14:12:49Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "fb4b178ad8c70db067dfac9c080063984670e4f3"
+      },
       "comments": [],
       "reviews": [
         {
@@ -1100,6 +1102,46 @@
               "updatedAt": "2024-05-06T16:43:18Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc55uaC-",
+          "commit": {
+            "abbreviatedOid": "7c0dca3"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-07T06:52:40Z",
+          "updatedAt": "2024-05-07T06:52:40Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "All of this is a literal quote from RFC 4341!",
+              "createdAt": "2024-05-07T06:52:40Z",
+              "updatedAt": "2024-05-07T06:52:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOK4gIBc55uiKo",
+          "commit": {
+            "abbreviatedOid": "7c0dca3"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-07T07:07:23Z",
+          "updatedAt": "2024-05-07T07:07:23Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "See a short PR that tries to undo some of the legacy of re41 and 2861. Note 2861 can't be normative.",
+              "createdAt": "2024-05-07T07:07:23Z",
+              "updatedAt": "2024-05-07T07:07:23Z"
+            }
+          ]
         }
       ]
     },
@@ -1108,24 +1150,26 @@
       "id": "PR_kwDOK4gIBc5uoOxp",
       "title": "Discussion of rate-based control and pacing",
       "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/21",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mwelzl",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes #18 ",
       "createdAt": "2024-05-06T12:01:58Z",
-      "updatedAt": "2024-05-06T21:25:11Z",
+      "updatedAt": "2024-05-07T06:50:24Z",
       "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "baseRefName": "main",
       "baseRefOid": "f673afc11370134f73077075f353df3454242917",
       "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
       "headRefName": "mw-discuss-ratebased-and-pacing",
-      "headRefOid": "dd19e1b1bc381990e82066070360a40815dfb9b5",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "8bbeb6da60482ea4a1203c5523a6c050a34bd189",
+      "closedAt": "2024-05-07T06:50:24Z",
+      "mergedAt": "2024-05-07T06:50:24Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "783c5069941bd90e95e448e0c452b6030fe1e30c"
+      },
       "comments": [],
       "reviews": [
         {
@@ -1160,6 +1204,48 @@
               "updatedAt": "2024-05-06T21:25:11Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOK4gIBc5uuD46",
+      "title": "Fix historic references to 2861?",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/22",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-07T07:05:05Z",
+      "updatedAt": "2024-05-08T14:12:58Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "mw-remove-some-transports",
+      "baseRefOid": "7c0dca3efaa00be2690ccda56a8a57be13c6f1f7",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "gorryfair-patch-7",
+      "headRefOid": "451ffaf7705bf55198a6ebb44bd730e6a18dddb5",
+      "closedAt": "2024-05-08T14:12:58Z",
+      "mergedAt": "2024-05-08T14:12:58Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "2acc5454a2929e6e0c0ce0ed2746530253f6f824"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc55vCzF",
+          "commit": {
+            "abbreviatedOid": "451ffaf"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Many thanks, LGTM!\r\n\r\nIf you agree, let's merge both now?",
+          "createdAt": "2024-05-07T08:02:22Z",
+          "updatedAt": "2024-05-07T08:02:22Z",
+          "comments": []
         }
       ]
     }
