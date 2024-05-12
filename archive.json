@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-09T00:25:50.156421+00:00",
+  "timestamp": "2024-05-12T00:29:16.489915+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -1245,6 +1245,48 @@
           "body": "Many thanks, LGTM!\r\n\r\nIf you agree, let's merge both now?",
           "createdAt": "2024-05-07T08:02:22Z",
           "updatedAt": "2024-05-07T08:02:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOK4gIBc5u-tdr",
+      "title": "Gorry's comments + change log",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/23",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-09T11:24:00Z",
+      "updatedAt": "2024-05-09T13:10:13Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "fb4b178ad8c70db067dfac9c080063984670e4f3",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-gorry-comments",
+      "headRefOid": "da1147239b156c1e3b64fc4eab920d30504665d1",
+      "closedAt": "2024-05-09T13:10:13Z",
+      "mergedAt": "2024-05-09T13:10:13Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "8a65ccb0def2ae1405ffafd42e680ade4fd42e8e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc56DkdP",
+          "commit": {
+            "abbreviatedOid": "da11472"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-09T11:35:16Z",
+          "updatedAt": "2024-05-09T11:35:16Z",
           "comments": []
         }
       ]
