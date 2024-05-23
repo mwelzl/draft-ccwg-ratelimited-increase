@@ -7,8 +7,8 @@ Internet-Draft                                        University of Oslo
 Updates: RFC5681, RFC9002, RFC9260, RFC9438 (if             T. Henderson
          approved)                              University of Washington
 Intended status: Standards Track                            G. Fairhurst
-Expires: 10 November 2024                         University of Aberdeen
-                                                              9 May 2024
+Expires: 24 November 2024                         University of Aberdeen
+                                                             23 May 2024
 
 
    Increase of the Congestion Window when the Sender Is Rate-Limited
@@ -27,8 +27,8 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-
-   ccwg-constrained-increase.html.  Status information for this document
+   https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-
+   ccwg-ratelimited-increase.html.  Status information for this document
    may be found at https://datatracker.ietf.org/doc/draft-welzl-ccwg-
    ratelimited-increase/.
 
@@ -38,7 +38,7 @@ About This Document
    Subscribe at https://www.ietf.org/mailman/listinfo/ccwg/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/mwelzl/draft-ccwg-constrained-increase.
+   https://github.com/mwelzl/draft-ccwg-ratelimited-increase.
 
 Status of This Memo
 
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 November 2024.
+   This Internet-Draft will expire on 24 November 2024.
 
 Copyright Notice
 
