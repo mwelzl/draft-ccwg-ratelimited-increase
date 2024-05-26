@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-23T00:26:22.680671+00:00",
+  "timestamp": "2024-05-26T00:29:41.587264+00:00",
   "repo": "mwelzl/draft-ccwg-ratelimited-increase",
   "labels": [
     {
@@ -331,6 +331,76 @@
           "updatedAt": "2024-05-01T16:48:30Z"
         }
       ]
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOK4gIBc6Jz--D",
+      "title": "github.io link is not working",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/24",
+      "state": "CLOSED",
+      "author": "mohittahiliani",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The following link in the note gives a 404:\r\n\r\nhttps://mwelzl.github.io/draft-ccwg-constrained-increase/draft-welzl-ccwg-constrained-increase.html",
+      "createdAt": "2024-05-23T06:55:36Z",
+      "updatedAt": "2024-05-23T07:34:18Z",
+      "closedAt": "2024-05-23T07:34:18Z",
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "Thanks!  That must be to do with the renaming that we did - from \"constrained\" to ratelimited\".  I see, this must be the link in the draft itself?  (easy to fix, and will, if that's all !)  Or where else have you seen that URL?",
+          "createdAt": "2024-05-23T07:02:57Z",
+          "updatedAt": "2024-05-23T07:02:57Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "body": "( just to be clear: the correct one should be:  https://mwelzl.github.io/draft-ccwg-ratelimited-increase/draft-welzl-ccwg-ratelimited-increase.html  )",
+          "createdAt": "2024-05-23T07:04:53Z",
+          "updatedAt": "2024-05-23T07:04:53Z"
+        },
+        {
+          "author": "mohittahiliani",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Thanks! That must be to do with the renaming that we did - from \"constrained\" to ratelimited\". I see, this must be the link in the draft itself? (easy to fix, and will, if that's all !) Or where else have you seen that URL?\r\n\r\nYes, it's in the draft. The link with \"ratelimited\" works. ",
+          "createdAt": "2024-05-23T07:33:15Z",
+          "updatedAt": "2024-05-23T07:33:15Z"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOK4gIBc6KHOoq",
+      "title": "Typos in the Introduction",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/27",
+      "state": "CLOSED",
+      "author": "mohittahiliani",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There are two typos in the first paragraph of Introduction:\r\n\r\nconection --> connection\r\nquic --> QUIC",
+      "createdAt": "2024-05-25T17:37:14Z",
+      "updatedAt": "2024-05-25T19:51:52Z",
+      "closedAt": "2024-05-25T19:51:52Z",
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOK4gIBc6KHPKp",
+      "title": "Definition of maxFS is repeated",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/issues/28",
+      "state": "CLOSED",
+      "author": "mohittahiliani",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "maxFS is defined twice: once in Section 1.1 and then in Section 3 with the same statement -- \"the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.\"",
+      "createdAt": "2024-05-25T17:43:47Z",
+      "updatedAt": "2024-05-25T19:50:20Z",
+      "closedAt": "2024-05-25T19:50:20Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -1287,6 +1357,118 @@
           "body": "",
           "createdAt": "2024-05-09T11:35:16Z",
           "updatedAt": "2024-05-09T11:35:16Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "PR_kwDOK4gIBc5wSftf",
+      "title": "Fix github URL",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/25",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #24",
+      "createdAt": "2024-05-23T07:06:24Z",
+      "updatedAt": "2024-05-23T07:34:17Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "ab1939541cf97b6c287cee1ffaea9b19c1bd7645",
+      "headRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "headRefName": "mw-fix-github-url",
+      "headRefOid": "ba26a01c626fea0cd5741fa0c11f25da9c8d2281",
+      "closedAt": "2024-05-23T07:34:17Z",
+      "mergedAt": "2024-05-23T07:34:17Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "1564fb62fc177de8650c4e39de2da9dd583f8ace"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 26,
+      "id": "PR_kwDOK4gIBc5wjyxw",
+      "title": "Fix typos in Introduction (fixes Issue #27)",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/26",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes two typos in the first paragraph of the Introduction Section.",
+      "createdAt": "2024-05-25T17:31:21Z",
+      "updatedAt": "2024-05-25T19:51:51Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "1564fb62fc177de8650c4e39de2da9dd583f8ace",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "typos",
+      "headRefOid": "edf7ad163202fb172e2612b757fb98106c084b4c",
+      "closedAt": "2024-05-25T19:51:51Z",
+      "mergedAt": "2024-05-25T19:51:51Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "ccd06b7c744075f2402a2055c237553c27d0bbac"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc577QEk",
+          "commit": {
+            "abbreviatedOid": "edf7ad1"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Also a great catch, many thank for the fix!",
+          "createdAt": "2024-05-25T19:51:18Z",
+          "updatedAt": "2024-05-25T19:51:18Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "PR_kwDOK4gIBc5wjzen",
+      "title": "Remove duplicate statement (fixes Issue #28)",
+      "url": "https://github.com/mwelzl/draft-ccwg-ratelimited-increase/pull/29",
+      "state": "MERGED",
+      "author": "mohittahiliani",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "maxFS is defined twice: once in Section 1.1 and then in Section 3 with the same statement -- \"the largest value of FlightSize since the last time that cwnd was decreased. If cwnd has never been decreased, maxFS is the maximum value of FlightSize since the start of the data transfer.\"\r\n\r\nThis PR removes the definition from Section 3.",
+      "createdAt": "2024-05-25T17:44:04Z",
+      "updatedAt": "2024-05-25T19:50:20Z",
+      "baseRepository": "mwelzl/draft-ccwg-ratelimited-increase",
+      "baseRefName": "main",
+      "baseRefOid": "1564fb62fc177de8650c4e39de2da9dd583f8ace",
+      "headRepository": "mohittahiliani/draft-ccwg-ratelimited-increase",
+      "headRefName": "duplicate",
+      "headRefOid": "cc784f5ed44a9fee114a24ba17a6da806fce0daf",
+      "closedAt": "2024-05-25T19:50:20Z",
+      "mergedAt": "2024-05-25T19:50:20Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "5191c690ad2fff6bc291672653c505855ea4bc63"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOK4gIBc577QDB",
+          "commit": {
+            "abbreviatedOid": "cc784f5"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Great catch, and a good fix, many thanks!",
+          "createdAt": "2024-05-25T19:49:33Z",
+          "updatedAt": "2024-05-25T19:49:33Z",
           "comments": []
         }
       ]
