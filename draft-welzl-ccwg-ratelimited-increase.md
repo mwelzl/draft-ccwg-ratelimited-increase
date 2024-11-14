@@ -122,6 +122,7 @@ For example, for Slow Start, as specified in {{!RFC5681}}, limit(maxFS)=2*maxFS,
 cwnd_new = cwnd + min (N, SMSS)
 cwnd = min(cwnd_new, 2*maxFS)
 ~~~
+where cwnd and SMSS follow their definitions in {{!RFC5681}} and N is the number of previously unacknowledged bytes acknowledged in the incoming ACK.
 
 Similarly, with rule #2 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, such that equation 3 in {{!RFC5681}} becomes:
 
@@ -129,6 +130,7 @@ Similarly, with rule #2 applied to Congestion Avoidance, limit(maxFS)=1+maxFS, s
 cwnd_new = cwnd + SMSS*SMSS/cwnd
 cwnd = min(cwnd_new, 1+maxFS)
 ~~~
+where cwnd and SMSS follow their definitions in {{!RFC5681}}.
 
 As with cwnd, without a way to reduce it when the transport sender becomes rate-limited, rule #2 allows for maxFS to stay valid for a long time, possibly not reflecting the reality of the end-to-end Internet path in use. For cwnd, this is remedied by "Congestion Window Validation" in {{!RFC7661}}, which also defines a "pipeACK" variable that measures the acknowledged size of the network pipe when the sender is rate-limited. Accordingly, to implement CWV, rule #3 can be used.
 
